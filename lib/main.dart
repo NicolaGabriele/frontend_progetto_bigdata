@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_progetto_bigdata/Models/ReviewsNumberItem.dart';
-import 'package:frontend_progetto_bigdata/REST/Query.dart';
 import 'package:frontend_progetto_bigdata/Widgets/States/HomePageState.dart';
-import 'package:frontend_progetto_bigdata/Widgets/Pages/SubmitPage.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/QueriesPage.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/ReviewsAutoClassificator.dart';
-import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
 
 
 
