@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:frontend_progetto_bigdata/Widgets/visualizzations/GeoDataHotelsInNation.dart';
 
 class VisualizzationPage extends StatefulWidget{
 
@@ -18,14 +19,8 @@ class VisualizzationPage extends StatefulWidget{
 class _VisualizzationPageState extends State<VisualizzationPage>{
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Padding(
-          padding: EdgeInsets.all(200),
-          child: Column(
-              children: (widget.widgets!=null)? widget.widgets as List<Widget>:List.empty()
-          ),
-        )
-        );
+    //TODO: debug
+    return GeoDataHotelsInNation();
   }
 
   void update(){

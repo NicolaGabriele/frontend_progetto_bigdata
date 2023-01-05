@@ -14,7 +14,7 @@ class _SubmitPageState extends State<SubmitPage>{
     //TODO
     return Container(
       child: Padding(
-        padding: EdgeInsets.only(top: 200, bottom: 200,left: 100,right: 100),
+        padding: EdgeInsets.only(top: 200, bottom: 200,left: 200,right: 200),
         child: Text("Area di Submit"),
       ),
     );

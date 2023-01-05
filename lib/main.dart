@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend_progetto_bigdata/Widgets/States/HomePageState.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/QueriesPage.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/ReviewsAutoClassificator.dart';
+import 'package:frontend_progetto_bigdata/Widgets/visualizzations/GeoDataHotelsInNation.dart';
 
 
 
@@ -73,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
           bottom: getBottom(),
         ),
         body: TabBarView(children: [QueriesPage(),QueriesPage(), ReviewsAutoClassificator()],),
+        bottomNavigationBar: BottomAppBar(color: Colors.blue, elevation: 10,child: Container(height: 50,),)
       ),
     );
   }
