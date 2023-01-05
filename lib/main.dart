@@ -31,9 +31,19 @@ class MyHomePage extends StatefulWidget {
   static HomePageState state = HomePageState.Query;
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  double _opacity = 0;
+  @override
+
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => _opacity=1.0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +52,16 @@ class _MyHomePageState extends State<MyHomePage> {
       child:Scaffold(
         appBar: AppBar(
           title: Center(
-            child:Text(widget.title,
-              style: const TextStyle(
-                  fontSize: 50,
-                  fontStyle: FontStyle.italic,
-                  shadows: [Shadow(color: Colors.black, offset: Offset(1, 4), blurRadius: 1),
-                    Shadow(color: Colors.blue, offset: Offset(2, 1), blurRadius: 2)]
+            child: AnimatedOpacity(
+              duration: const Duration(seconds: 2),
+              opacity: _opacity,
+              child: Text(widget.title,
+                style: const TextStyle(
+                    fontSize: 50,
+                    fontStyle: FontStyle.italic,
+                    shadows: [Shadow(color: Colors.black, offset: Offset(1, 4), blurRadius: 1),
+                      Shadow(color: Colors.blue, offset: Offset(2, 1), blurRadius: 2)]
+                ),
               ),
             ),
           ),
