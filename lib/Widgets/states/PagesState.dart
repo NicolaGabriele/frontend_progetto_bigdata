@@ -1,0 +1,5 @@
+enum PagesState{
+  HOME_PAGE,
+  NAIVE_BAESYAN,
+  STANDARD_ANALISYS
+}

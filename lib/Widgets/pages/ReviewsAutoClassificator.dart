@@ -9,7 +9,7 @@ class ReviewsAutoClassificator extends StatefulWidget{
 class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Container();
   }
 
 }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_progetto_bigdata/Widgets/States/HomePageState.dart';
+import 'package:frontend_progetto_bigdata/Widgets/pages/HomePage.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/QueriesPage.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/ReviewsAutoClassificator.dart';
 import 'package:frontend_progetto_bigdata/Widgets/visualizzations/GeoDataHotelsInNation.dart';
+
+import 'Widgets/pages/HomePage.dart';
+import 'Widgets/states/PagesState.dart';
 
 
 
@@ -11,6 +14,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -18,75 +22,67 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hotel Reviews Analitycs',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Hotel Reviews Analitycs'),
+      home: MyHomePage(title: 'Hotel Reviews Analitycs'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
+  PagesState _state = PagesState.HOME_PAGE;
+  MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
-  static HomePageState state = HomePageState.Query;
+  _MyHomePageState _pagState = _MyHomePageState();
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _pagState;
+  void cambiaStato(PagesState p){
+    this._state = p;
+
+  }
 
 }
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  double _opacity = 0;
-  @override
-
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => _opacity=1.0);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child:Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Center(
-            child: AnimatedOpacity(
-              duration: const Duration(seconds: 2),
-              opacity: _opacity,
-              child: Text(widget.title,
-                style: const TextStyle(
-                    fontSize: 50,
-                    fontStyle: FontStyle.italic,
-                    shadows: [Shadow(color: Colors.black, offset: Offset(1, 4), blurRadius: 1),
-                      Shadow(color: Colors.blue, offset: Offset(2, 1), blurRadius: 2)]
-                ),
-              ),
-            ),
-          ),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(30),
-            ),
-          ),
-          bottom: getBottom(),
+              child: Row(
+                children: [
+                  Container(
+                    width: 75,
+                    height: 75,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle
+                    ) ,
+                    child: Image.asset("images/logo.jpg")
+                  ),
+                  Text(
+                    widget.title,
+                    style: const TextStyle(
+                        fontSize: 50,
+                        fontStyle: FontStyle.italic
+                    ),
+                  )
+                ],
+              )
+          ), //aggiungere bellezze
         ),
-        body: TabBarView(children: [QueriesPage(),QueriesPage(), ReviewsAutoClassificator()],),
-        bottomNavigationBar: BottomAppBar(color: Colors.blue, elevation: 10,child: Container(height: 50,),)
-      ),
-    );
+        body:getBody(),//getBody(),
+        bottomNavigationBar: BottomAppBar(color: Colors.red, elevation: 10,child: Container(height: 25,),),
+      );
   }
 
-  PreferredSizeWidget getBottom(){
-    return const TabBar(
-      tabs:[
-        Tab(text: "Albergatori",icon: Icon(Icons.hotel),),
-        Tab(text: "Viaggiatori",icon: Icon(Icons.travel_explore),),
-        Tab(text: "Automatic Reviews Classificator",icon: Icon(Icons.auto_mode),)
-      ],
-    );
+  Widget getBody(){
+    if(this.widget._state == PagesState.STANDARD_ANALISYS)
+       QueriesPage();
+    if(this.widget._state == PagesState.NAIVE_BAESYAN)
+      ReviewsAutoClassificator();
+    return HomePage(home: this.widget,);
   }
+
 
 }

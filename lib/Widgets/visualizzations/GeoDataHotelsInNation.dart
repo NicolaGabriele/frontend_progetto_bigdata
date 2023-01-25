@@ -4,27 +4,34 @@ import 'package:latlong/latlong.dart';
 
 class GeoDataHotelsInNation extends StatefulWidget{
 
-
   @override
   State<StatefulWidget> createState()=>_GeoDataHotelsState();
 
 }
 
 class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
+  double _zoom_level = 5;
+  final LatLng center = LatLng(41.890444, 12.492093);
+  MapController? control;
   @override
   Widget build(BuildContext context) {
+    print(_zoom_level);
     return Expanded(
-        child: Container(
-            height: 500,
-            width: 800,
-            decoration: BoxDecoration(
-                border: Border.all(width: 2.0),
-                borderRadius: BorderRadius.all(Radius.circular(20))
+        flex: 1,
+        child: Column(
+          children: [
+            Container(height: 30,),
+            Container(
+                width: 400,
+                height: 500,
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    border: Border.all(width: 2.0),
+                    borderRadius: BorderRadius.all(Radius.circular(20))
+                ),
+                child: buildMap()
             ),
-            child: Padding(
-              padding: EdgeInsets.all(5),
-              child:buildMap(),
-            )
+          ],
         )
     );
   }
@@ -33,8 +40,8 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
     return Stack(
       children: [
         FlutterMap(options: MapOptions(
-            center: LatLng(41.890444, 12.492093),
-            zoom: 5.0
+            center: center,
+            zoom: _zoom_level
         ),
           layers: [
             TileLayerOptions(
@@ -51,10 +58,8 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
                   ),]
             ),
           ],
-        ),
+        )
       ],
     );
   }
-
-
 }

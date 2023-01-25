@@ -13,16 +13,8 @@ class _QueriesPageState extends State<StatefulWidget>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          child: Row(
-            children: [
-              SubmitPage(),
-              VerticalDivider(
-                width: 40,color: Colors.black,
-              ),
-              VisualizzationPage(widgets: [Text("Area di visualizzazione")],)
-            ],
-          ),
+        body: Row(
+          children: [SubmitPage(),VerticalDivider(width: 2,color: Colors.black,),VisualizzationPage()],
         )
     );
   }

@@ -1,4 +1,0 @@
-enum HomePageState{
-  Query,
-  Visualizzation
-}
