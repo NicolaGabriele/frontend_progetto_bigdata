@@ -1,16 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:frontend_progetto_bigdata/main.dart';
-
-import '../states/PagesState.dart';
+import 'package:frontend_progetto_bigdata/Widgets/pages/QueriesPage.dart';
+import 'package:frontend_progetto_bigdata/Widgets/pages/ReviewsAutoClassificator.dart';
 
 class HomePage extends StatefulWidget{
-  MyHomePage home;
   @override
   State<StatefulWidget> createState()=> HomePageState();
-  HomePage({required this.home});
-
 }
 
 class HomePageState extends State<HomePage>{
@@ -50,7 +45,9 @@ class HomePageState extends State<HomePage>{
               Padding(
                 padding: EdgeInsets.all(20),
                 child: RaisedButton(
-                onPressed: ()=>setState(()=>this.widget.home.cambiaStato(PagesState.NAIVE_BAESYAN)),
+                    onPressed: ()=>{Navigator.push(
+                        context, MaterialPageRoute(builder: (context)=> ReviewsAutoClassificator())
+                    )},
                 color: Colors.red,
                 shape: const RoundedRectangleBorder(
                     side:BorderSide(color: Colors.black, width: 1),
@@ -70,7 +67,9 @@ class HomePageState extends State<HomePage>{
               Padding(
                   padding: EdgeInsets.all(10),
                   child: RaisedButton(
-                      onPressed: ()=> setState(()=>this.widget.home.cambiaStato(PagesState.STANDARD_ANALISYS)),
+                      onPressed: ()=>{Navigator.push(
+                        context, MaterialPageRoute(builder: (context)=> QueriesPage())
+                      )},
                       color: Colors.red,
                       shape: const RoundedRectangleBorder(
                             side:BorderSide(color: Colors.black, width: 1),
