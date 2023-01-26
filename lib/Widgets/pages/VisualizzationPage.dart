@@ -5,13 +5,13 @@ import 'package:frontend_progetto_bigdata/Widgets/visualizzations/GeoDataHotelsI
 
 class VisualizzationPage extends StatefulWidget{
 
-  List<Widget> widgets;
+  Widget widgets;
   _VisualizzationPageState state = _VisualizzationPageState();
   VisualizzationPage({required this.widgets});
   @override
   State<StatefulWidget> createState()=>state;
 
-  void setWidgets(List<Widget> l){
+  void setWidget(Widget l){
     state.setState(() {
       this.widgets = l;
     });
@@ -20,12 +20,14 @@ class VisualizzationPage extends StatefulWidget{
 }
 
 class _VisualizzationPageState extends State<VisualizzationPage>{
+  ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Container(
       width: (0.77)*MediaQuery.of(context).size.width,
       color: Colors.white,
       child: Stack(
+        alignment: Alignment.center,
         children: [
           Opacity(
             opacity: 1,
@@ -36,13 +38,7 @@ class _VisualizzationPageState extends State<VisualizzationPage>{
               ),
             ),
           ),
-          SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: this.widget.widgets,
-              )
-          )
+          widget.widgets
         ],
       ),
     );

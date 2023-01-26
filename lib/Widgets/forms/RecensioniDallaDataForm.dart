@@ -29,6 +29,7 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
     '3 anni': 1000
   };
 
+
   String? _time = _timingMap.keys.first;
   String? _hotel = "nome hotel";
   @override
@@ -81,16 +82,34 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
   }
 
   void submitRecensioniDallaData() async{
-    widget.visualizzation.setWidgets(
-        [
-          Padding(padding: EdgeInsets.only(left: 500), child: CircularProgressIndicator())
-        ]
+    widget.visualizzation.setWidget(
+          const SizedBox(
+            width: 50,
+            height: 50,
+            child: CircularProgressIndicator(),
+          )
+
     );
 
     List<String> s = await Query.recensioniHotelDallaData(_hotel!, _timingMap[_time]!);
-    String a ="";
-    s.forEach((element) {a+=element+"\n";});
-    widget.visualizzation.setWidgets([Text(a)]);
+    List<Widget> l = [];
+    s.forEach((element) {l.add(
+        Padding(padding: EdgeInsets.only(top:20),child: Text(element)));
+    });
+    widget.visualizzation.setWidget(
+      Container(
+        width: 1000,
+        height: 300,
+        child: Scrollbar(
+          controller: ScrollController(),
+          scrollbarOrientation: ScrollbarOrientation.right,
+          thumbVisibility: true,
+          child: ListView(
+            children: l,
+          )
+        ),
+      )
+    );
   }
 
 }
