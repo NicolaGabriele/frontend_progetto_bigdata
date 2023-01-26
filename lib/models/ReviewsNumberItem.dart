@@ -32,4 +32,5 @@ class ReviewsNumberItem{
   String getLongitudine(){
     return _longitudine;
   }
+
 }

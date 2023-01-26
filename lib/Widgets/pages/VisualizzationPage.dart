@@ -20,9 +20,9 @@ class VisualizzationPage extends StatefulWidget{
 }
 
 class _VisualizzationPageState extends State<VisualizzationPage>{
-  ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
+    //return GeoDataHotelsInNation();
     return Container(
       width: (0.77)*MediaQuery.of(context).size.width,
       color: Colors.white,
