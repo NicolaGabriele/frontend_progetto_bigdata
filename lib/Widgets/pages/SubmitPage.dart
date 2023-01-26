@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_progetto_bigdata/Widgets/forms/RecensioniDallaDataForm.dart';
+import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
+import 'package:frontend_progetto_bigdata/REST/Query.dart';
 class SubmitPage extends StatefulWidget{
 
-  static const List<String> list = ["Italy","France","United Kindom"];
+  VisualizzationPage visualizzation;
+  SubmitPage({required this.visualizzation});
   @override
   State<StatefulWidget> createState()=>_SubmitPageState();
 
@@ -15,9 +18,10 @@ class _SubmitPageState extends State<SubmitPage>{
     'positive reviews word count': Form.WORD_COUNT_POSITIVE,
      'recensioni hotel':Form.RECENSIONI_HOTEL
   };
-   List<String> list = <String>['negative reviews word count','negative reviews word count'];
+
   String? dropdownvalue = visualMapping.keys.first;
   Form? _form = Form.WORD_COUNT_POSITIVE;
+  Widget _formWidget = Container();
   @override
   Widget build(BuildContext context) {
     //TODO
@@ -51,6 +55,7 @@ class _SubmitPageState extends State<SubmitPage>{
                   onChanged: (String? value)=>setState(()=>{
                     dropdownvalue=value,
                     _form = visualMapping[value],
+                    setForm()
                   }),
                   dropdownColor: Colors.red.shade50,
                   underline: Container(height: 2,color: Colors.red.shade700,),
@@ -58,15 +63,8 @@ class _SubmitPageState extends State<SubmitPage>{
               )
             )
         ),
-        //mettere form
-        setForm(),
-        Padding(
-          padding: EdgeInsets.only(left: 50,top: 10),
-          child: ElevatedButton(
-              onPressed: ()=>{},
-              child: Text('submit',textAlign: TextAlign.center)
-          ),
-        )
+        _formWidget,
+
       ],
     );
   }
@@ -75,12 +73,13 @@ class _SubmitPageState extends State<SubmitPage>{
       return visualMapping.keys.map((e) => DropdownMenuItem<String>(value: e,child: Text(e))).toList();
   }
 
-  Widget setForm(){
+  void setForm(){
     switch(_form){
-      case Form.RECENSIONI_HOTEL: return RecensioniDallaDataForm();
+      case Form.RECENSIONI_HOTEL: _formWidget = RecensioniDallaDataForm(visualizzation: widget.visualizzation);
     }
-    return Container();
   }
+
+
 
 }
 

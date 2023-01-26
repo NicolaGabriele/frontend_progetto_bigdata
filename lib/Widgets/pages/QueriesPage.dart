@@ -10,6 +10,7 @@ class QueriesPage extends StatefulWidget{
 }
 
 class _QueriesPageState extends State<StatefulWidget>{
+  VisualizzationPage visualizzation = VisualizzationPage(widgets: [],);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +38,7 @@ class _QueriesPageState extends State<StatefulWidget>{
         ), //aggiungere bellezze
       ),
         body: Row(
-          children: [SubmitPage(),VerticalDivider(width: 2,color: Colors.black,),VisualizzationPage()],
+          children: [SubmitPage(visualizzation: visualizzation),VerticalDivider(width: 2,color: Colors.black,),visualizzation],
         ),
       bottomNavigationBar: BottomAppBar(color: Colors.red, elevation: 10,child: Container(height: 25,),),
     );
