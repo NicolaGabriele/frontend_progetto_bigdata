@@ -18,7 +18,7 @@ class HomePageState extends State<HomePage>{
   @override
   void initState(){
     super.initState();
-    timer = Timer.periodic(Duration(seconds: 7), (timer) {
+    timer = Timer.periodic(Duration(seconds: 3), (timer) {
       setState(() => _index = 1-_index);
     });
   }

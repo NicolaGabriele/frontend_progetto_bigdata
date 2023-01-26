@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:frontend_progetto_bigdata/Widgets/forms/RecensioniDallaDataForm.dart';
 class SubmitPage extends StatefulWidget{
 
   static const List<String> list = ["Italy","France","United Kindom"];
@@ -10,10 +10,13 @@ class SubmitPage extends StatefulWidget{
 
 class _SubmitPageState extends State<SubmitPage>{
 
-  Map<String,Form> visualMapping = {
+   static Map<String,Form> visualMapping = {
     'negative reviews word count':Form.WORD_COUNT_NEGATIVE,
-    'positive reviews word count': Form.WORD_COUNT_POSITIVE
+    'positive reviews word count': Form.WORD_COUNT_POSITIVE,
+     'recensioni hotel':Form.RECENSIONI_HOTEL
   };
+   List<String> list = <String>['negative reviews word count','negative reviews word count'];
+  String? dropdownvalue = visualMapping.keys.first;
   Form? _form = Form.WORD_COUNT_POSITIVE;
   @override
   Widget build(BuildContext context) {
@@ -37,24 +40,31 @@ class _SubmitPageState extends State<SubmitPage>{
         Padding(
             padding: const EdgeInsets.only(left: 50, top: 30),
             child: DecoratedBox(
-              decoration: BoxDecoration(
+             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 color: Colors.red.shade50,
               ),
-              child: DropdownButton(
-                items: buildItems(),
-                onChanged: (String? value)=>setState(()=>_form = visualMapping[value]),
-                dropdownColor: Colors.red.shade50,
-                underline: Container(height: 2,color: Colors.red.shade700,),
-              ),
+              child: Expanded(
+                child: DropdownButton(
+                  value: dropdownvalue,
+                  items: visualMapping.keys.map((e) => DropdownMenuItem<String>(value: e,child: Text(e,textAlign: TextAlign.center))).toList(),
+                  onChanged: (String? value)=>setState(()=>{
+                    dropdownvalue=value,
+                    _form = visualMapping[value],
+                  }),
+                  dropdownColor: Colors.red.shade50,
+                  underline: Container(height: 2,color: Colors.red.shade700,),
+                ),
+              )
             )
         ),
         //mettere form
-        Container(
-          alignment: Alignment.bottomCenter,
+        setForm(),
+        Padding(
+          padding: EdgeInsets.only(left: 50,top: 10),
           child: ElevatedButton(
               onPressed: ()=>{},
-              child: Text('submit')
+              child: Text('submit',textAlign: TextAlign.center)
           ),
         )
       ],
@@ -65,10 +75,17 @@ class _SubmitPageState extends State<SubmitPage>{
       return visualMapping.keys.map((e) => DropdownMenuItem<String>(value: e,child: Text(e))).toList();
   }
 
+  Widget setForm(){
+    switch(_form){
+      case Form.RECENSIONI_HOTEL: return RecensioniDallaDataForm();
+    }
+    return Container();
+  }
 
 }
 
 enum Form{
   WORD_COUNT_NEGATIVE,
-  WORD_COUNT_POSITIVE
+  WORD_COUNT_POSITIVE,
+  RECENSIONI_HOTEL,
 }
