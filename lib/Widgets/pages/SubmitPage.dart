@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:frontend_progetto_bigdata/Widgets/forms/RecensioniDallaDataForm.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
 import 'package:frontend_progetto_bigdata/REST/Query.dart';
+
+import '../forms/WordCountForm.dart';
 class SubmitPage extends StatefulWidget{
 
   VisualizzationPage visualizzation;
@@ -75,7 +77,9 @@ class _SubmitPageState extends State<SubmitPage>{
 
   void setForm(){
     switch(_form){
-      case Form.RECENSIONI_HOTEL: _formWidget = RecensioniDallaDataForm(visualizzation: widget.visualizzation);
+      case Form.RECENSIONI_HOTEL: _formWidget = RecensioniDallaDataForm(visualizzation: widget.visualizzation);break;
+      case Form.WORD_COUNT_POSITIVE: _formWidget = WordCountForm(visualizzation: widget.visualizzation);break;
+      default: _formWidget=Container();break;
     }
   }
 
