@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_progetto_bigdata/Widgets/forms/RecensioniDallaDataForm.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
-import 'package:frontend_progetto_bigdata/REST/Query.dart';
 
 import '../forms/WordCountForm.dart';
 class SubmitPage extends StatefulWidget{
@@ -16,14 +15,16 @@ class SubmitPage extends StatefulWidget{
 class _SubmitPageState extends State<SubmitPage>{
 
    static Map<String,Form> visualMapping = {
+     'select query': Form.NO_SELECTED,
     'negative reviews word count':Form.WORD_COUNT_NEGATIVE,
     'positive reviews word count': Form.WORD_COUNT_POSITIVE,
      'recensioni hotel':Form.RECENSIONI_HOTEL
   };
 
-  String? dropdownvalue = visualMapping.keys.first;
-  Form? _form = Form.WORD_COUNT_POSITIVE;
+  String dropdownvalue = visualMapping.keys.first;
+  Form _form = Form.NO_SELECTED;
   Widget _formWidget = Container();
+
   @override
   Widget build(BuildContext context) {
     //TODO
@@ -55,8 +56,8 @@ class _SubmitPageState extends State<SubmitPage>{
                   value: dropdownvalue,
                   items: visualMapping.keys.map((e) => DropdownMenuItem<String>(value: e,child: Text(e,textAlign: TextAlign.center))).toList(),
                   onChanged: (String? value)=>setState(()=>{
-                    dropdownvalue=value,
-                    _form = visualMapping[value],
+                    dropdownvalue=value!,
+                    _form = visualMapping[value] as Form,
                     setForm()
                   }),
                   dropdownColor: Colors.red.shade50,
@@ -78,7 +79,8 @@ class _SubmitPageState extends State<SubmitPage>{
   void setForm(){
     switch(_form){
       case Form.RECENSIONI_HOTEL: _formWidget = RecensioniDallaDataForm(visualizzation: widget.visualizzation);break;
-      case Form.WORD_COUNT_POSITIVE: _formWidget = WordCountForm(visualizzation: widget.visualizzation);break;
+      case Form.WORD_COUNT_POSITIVE: _formWidget = WordCountForm(visualizzation: widget.visualizzation, form: this._form);break;
+      case Form.WORD_COUNT_NEGATIVE: _formWidget = WordCountForm(visualizzation: widget.visualizzation, form: this._form);break;
       default: _formWidget=Container();break;
     }
   }
@@ -88,6 +90,7 @@ class _SubmitPageState extends State<SubmitPage>{
 }
 
 enum Form{
+  NO_SELECTED,
   WORD_COUNT_NEGATIVE,
   WORD_COUNT_POSITIVE,
   RECENSIONI_HOTEL,
