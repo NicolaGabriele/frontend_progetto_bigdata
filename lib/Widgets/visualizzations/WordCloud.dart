@@ -40,6 +40,7 @@ class WordCloud extends StatelessWidget{
   }
 
 }
+
 class ScatterItem extends StatelessWidget {
   ScatterItem(this.hashtag, this.index);
   final FlutterHashtag hashtag;

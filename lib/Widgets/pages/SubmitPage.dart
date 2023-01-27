@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_progetto_bigdata/Widgets/forms/GeoDataByNationForm.dart';
 import 'package:frontend_progetto_bigdata/Widgets/forms/RecensioniDallaDataForm.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
 
@@ -18,7 +19,8 @@ class _SubmitPageState extends State<SubmitPage>{
      'select query': Form.NO_SELECTED,
     'negative reviews word count':Form.WORD_COUNT_NEGATIVE,
     'positive reviews word count': Form.WORD_COUNT_POSITIVE,
-     'recensioni hotel':Form.RECENSIONI_HOTEL
+     'recensioni hotel':Form.RECENSIONI_HOTEL,
+     'Get Hotels in Nation':Form.HOTEL_IN_NATION,
   };
 
   String dropdownvalue = visualMapping.keys.first;
@@ -81,6 +83,7 @@ class _SubmitPageState extends State<SubmitPage>{
       case Form.RECENSIONI_HOTEL: _formWidget = RecensioniDallaDataForm(visualizzation: widget.visualizzation);break;
       case Form.WORD_COUNT_POSITIVE: _formWidget = WordCountForm(visualizzation: widget.visualizzation, form: this._form);break;
       case Form.WORD_COUNT_NEGATIVE: _formWidget = WordCountForm(visualizzation: widget.visualizzation, form: this._form);break;
+      case Form.HOTEL_IN_NATION: _formWidget = GeoDataByNationForm(visualizzation: widget.visualizzation, form: this._form);break;
       default: _formWidget=Container();break;
     }
   }
@@ -94,4 +97,5 @@ enum Form{
   WORD_COUNT_NEGATIVE,
   WORD_COUNT_POSITIVE,
   RECENSIONI_HOTEL,
+  HOTEL_IN_NATION,
 }

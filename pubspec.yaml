@@ -44,6 +44,7 @@ dependencies:
   proj4dart: ^1.0.4
   charts_flutter_new: any
   flutter_scatter: ^0.2.0
+ # country_state_city: any
 
 dev_dependencies:
   flutter_test:

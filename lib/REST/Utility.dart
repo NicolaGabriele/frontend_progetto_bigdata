@@ -11,7 +11,7 @@ class Utility{
                       averageScoreFilter = "/averageScoreFilter",
                       reviewsNumberFilter = "/reviewsNumberFilter";
 
-  static List<String> nations = <String>[
+  static const List<String> nations = <String>[
     'Russia',
     'Germany',
     'Kingdom',
