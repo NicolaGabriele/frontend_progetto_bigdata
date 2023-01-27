@@ -4,6 +4,7 @@ import 'package:frontend_progetto_bigdata/Models/GeoData.dart';
 import 'package:frontend_progetto_bigdata/REST/Utility.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/SubmitPage.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
+import 'package:frontend_progetto_bigdata/Widgets/visualizzations/GeoDataHotelsInNation.dart';
 import '../pages/SubmitPage.dart' as sub;
 import '../../REST/Query.dart';
 
@@ -17,7 +18,7 @@ class GeoDataByNationForm extends StatefulWidget{
   @override
   State<StatefulWidget> createState() => state;
 
-  String? getHotel(){
+  String? getNation(){
     state._nation;
   }
 
@@ -28,7 +29,7 @@ class _GeoDataState extends State<GeoDataByNationForm> {
   //String? _nation = "nome nazione";
 
   static const List<String> list = Utility.nations;
-  String? _nation = list.first;
+  String _nation = list.first;
 
   @override
   Widget build(BuildContext buildContext){
@@ -87,12 +88,21 @@ class _GeoDataState extends State<GeoDataByNationForm> {
       )
     );
 
-    List<GeoData> coordinate = await Query.geoDataHotelsInNation(_nation!);
+    Query.geoDataHotelsInNation(_nation).then((value) => {
+      print("NATION: "+_nation),
+      print("FORM "+value[1].getLatitudine()),
+      widget.visualizzation.setWidget(
+        GeoDataHotelsInNation(coordinate: value)
+      )
+    });
 
-    List<Widget> w = [];
+    //List<GeoData> coordinate = await Query.geoDataHotelsInNation(_nation!);
+
+    /*List<Widget> w = [];
     coordinate.forEach((element) {w.add(
       Padding(padding: EdgeInsets.only(top: 20),child: Text(element.getLatitudine())));
     });
+
     widget.visualizzation.setWidget(
       Container(
         width: 1000,
@@ -106,7 +116,7 @@ class _GeoDataState extends State<GeoDataByNationForm> {
             )
         ),
       )
-    );
+    );*/
 
   }//submitHotelDallaNazione
 

@@ -38,9 +38,9 @@ class _QueriesPageState extends State<StatefulWidget>{
         ), //aggiungere bellezze
       ),
         body: Row(
-          children: [SubmitPage(visualizzation: visualizzation),VerticalDivider(width: 2,color: Colors.black,),visualizzation],
+          children: [SubmitPage(visualizzation: visualizzation),VerticalDivider(width:2,color: Colors.black,),visualizzation],
         ),
-      bottomNavigationBar: BottomAppBar(color: Colors.red, elevation: 10,child: Container(height: 25,),),
+      bottomNavigationBar: BottomAppBar(color: Colors.red, elevation: 10,child: Container(height: 20,),), //valore base 20
     );
   }
 

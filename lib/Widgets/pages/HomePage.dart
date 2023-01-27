@@ -44,26 +44,6 @@ class HomePageState extends State<HomePage>{
             children: [
               Padding(
                 padding: EdgeInsets.all(20),
-                child: ElevatedButton(
-                    onPressed: ()=>{Navigator.push(
-                        context, MaterialPageRoute(builder: (context)=> ReviewsAutoClassificator())
-                    )},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor : Colors.red,
-                      shape : const RoundedRectangleBorder(
-                          side:BorderSide(color: Colors.black, width: 1),
-                          borderRadius: BorderRadius.all(Radius.circular(30))
-                      ),
-                    ),
-                    child: const Text(
-                      "Naive Bayesian",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontStyle: FontStyle.italic
-                      ),
-                    )
-                /*
                 child: RaisedButton(
                     onPressed: ()=>{Navigator.push(
                         context, MaterialPageRoute(builder: (context)=> ReviewsAutoClassificator())
@@ -81,34 +61,10 @@ class HomePageState extends State<HomePage>{
                       fontStyle: FontStyle.italic
                     ),
                 )
-                 */
-
                 ),
               ),
               Padding(
                   padding: EdgeInsets.all(10),
-                  child: ElevatedButton(
-                    onPressed: ()=>{Navigator.push(
-                        context, MaterialPageRoute(builder: (context)=> QueriesPage())
-                    )},
-                      style : ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: const RoundedRectangleBorder(
-                        side:BorderSide(color: Colors.black, width: 1),
-                        borderRadius: BorderRadius.all(Radius.circular(30))
-                      ),
-                      ),
-                    child:const Text(
-                      "Standard Queries",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontStyle: FontStyle.italic
-                      ),
-                    )
-
-                )
-                  /*
                   child: RaisedButton(
                       onPressed: ()=>{Navigator.push(
                         context, MaterialPageRoute(builder: (context)=> QueriesPage())
@@ -126,8 +82,7 @@ class HomePageState extends State<HomePage>{
                             fontStyle: FontStyle.italic
                         ),
                       )
-
-                      ) */,
+                      ),
                   ),
             ],
           ),

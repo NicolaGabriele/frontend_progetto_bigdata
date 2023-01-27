@@ -2,34 +2,37 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
+import 'package:frontend_progetto_bigdata/Models/GeoData.dart';
 import 'package:frontend_progetto_bigdata/models/ReviewsNumberItem.dart';
 import 'package:latlong/latlong.dart';
 
 class GeoDataHotelsInNation extends StatefulWidget{
 
+  List<GeoData> coordinate = [];
+
+  GeoDataHotelsInNation({required this.coordinate});
+
   @override
-  State<StatefulWidget> createState()=>_GeoDataHotelsState();
+  State<StatefulWidget> createState()=>_GeoDataHotelsState(coord: coordinate);
 
 }
 
 class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
 
+  List<GeoData> coord;
+  _GeoDataHotelsState({required this.coord});
+
   final PopupController _popupController = PopupController();
   MapController _mapController = MapController();
   double _zoom = 7;
 
-  List<LatLng> _latLngList = [
-    LatLng(39.366384, 15.226579),
-    LatLng(39.366384, 16.026579),
-    LatLng(39.366384, 16.126579),
-    LatLng(39.366384, 16.526579),
-    LatLng(39.366384, 16.426579),
-    LatLng(39.366384, 17.226579),
-  ];
+  List<LatLng> _latLngList = [];
+
   var _markers = <Marker>[];
 
   @override
   Widget build(BuildContext context) {
+    print("VISUAL"+_markers[1].point.toString());
     return Expanded(
         flex: 1,
         child: Column(
@@ -52,9 +55,10 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
 
   @override
   void initState() {
-    _markers = _latLngList.map(
+    _markers = coord.map(
             (point) => Marker(
-              point: point,
+              //point: point,
+              point: new LatLng(double.parse(point.getLatitudine()),double.parse(point.getLongitudine())),
               width: 60,
               height: 60,
               builder: (context) => Icon(
@@ -63,7 +67,7 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
                 color: Colors.red.shade900,
               ),
             )).toList();
-    super.initState();
+    //super.initState();
   }
 
   Widget buildMap(){
@@ -75,8 +79,8 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
           mapController: _mapController,
           options: MapOptions(
             zoom: _zoom,
-            center: LatLng(39.366384, 16.226579),
-            //bounds: LatLngBounds.fromPoints(_latLngList),
+            center: _markers[1].point,
+            //bounds: LatLngBounds.fromPoints(lista latlong),
             plugins: [
               MarkerClusterPlugin(),
             ],

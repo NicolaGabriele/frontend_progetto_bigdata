@@ -33,7 +33,7 @@ class _WordCountFormState extends State<WordCountForm>{
       Container(
         width: 50,
         height: 50,
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(backgroundColor: Colors.red, color: Colors.white),
       )
     );
 
