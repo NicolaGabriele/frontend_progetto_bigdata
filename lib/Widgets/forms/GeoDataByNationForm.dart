@@ -90,7 +90,7 @@ class _GeoDataState extends State<GeoDataByNationForm> {
 
     Query.geoDataHotelsInNation(_nation).then((value) => {
       print("NATION: "+_nation),
-      print("FORM "+value[1].getLatitudine()),
+      print("FORM "+value[0].getLatitudine()),
       widget.visualizzation.setWidget(
         GeoDataHotelsInNation(coordinate: value)
       )

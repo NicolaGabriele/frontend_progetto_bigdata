@@ -31,9 +31,9 @@ class _VisualizzationPageState extends State<VisualizzationPage>{
             opacity: 1,
             child: Padding(
               padding: EdgeInsets.only(left: 800, top: 500),
-              child: Image.asset(
+              /*child: Image.asset(
                 "/images/visual.jpg",
-              ),
+              ),*/
             ),
           ),
           widget.widgets

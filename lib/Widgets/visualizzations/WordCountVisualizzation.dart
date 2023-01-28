@@ -22,8 +22,8 @@ class _WordCountVisualState extends State<WordCountVisualizzation>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 700,
-        height: 500,
+      width: 1280,
+        height: 720,
         child:Scrollbar(
             interactive: true,
             scrollbarOrientation: ScrollbarOrientation.right,

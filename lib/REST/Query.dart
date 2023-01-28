@@ -16,7 +16,7 @@ class Query{
 
   static Future<List<GeoData>> geoDataHotelsInNation(String nation)async{
     List<GeoData> results = [];
-    var response = await RestManager.submitSparkJob(Utility.geoDataHotelsInNation, {'nation':'Italy'});
+    var response = await RestManager.submitSparkJob(Utility.geoDataHotelsInNation, {'nation':nation});
     List<dynamic> l = jsonDecode(response);
     l.forEach((element) {
       Map<String,dynamic> map = element;
