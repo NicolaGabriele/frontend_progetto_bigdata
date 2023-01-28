@@ -40,26 +40,28 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Center(
-              child: Row(
-                children: [
-                  Container(
+          title: Row(
+            children: [
+              Flexible(
+                child:Container(
                     width: 75,
                     height: 75,
                     decoration: const BoxDecoration(
-                      shape: BoxShape.circle
+                        shape: BoxShape.circle
                     ) ,
                     child: Image.asset("images/logo.jpg")
+                ),
+              ),
+              const Flexible(
+                child: Text(
+                  'Hotel Reviews Analitycs',
+                  style: TextStyle(
+                      fontSize: 50,
+                      fontStyle: FontStyle.italic
                   ),
-                  Text(
-                    widget.title,
-                    style: const TextStyle(
-                        fontSize: 50,
-                        fontStyle: FontStyle.italic
-                    ),
-                  )
-                ],
-              )
+                ),
+              ),
+            ],
           ), //aggiungere bellezze
         ),
         body: HomePage(),

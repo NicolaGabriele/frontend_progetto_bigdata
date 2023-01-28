@@ -14,11 +14,13 @@ class WordCloud extends StatelessWidget{
   Widget build(BuildContext context) {
 
     List<FlutterHashtag> aux = [];
+    bool rotate = true;
     for(WordCountItem e in lista){
       double factor = 100/350000;
-      int size = e.getCounter()/factor as int;
+      int size = (e.getCounter()*factor).toInt();
+      rotate = (rotate)?false:true;
       aux.add(
-        FlutterHashtag(e.getWord(), Colors.red, size, false)
+        FlutterHashtag(e.getWord(), Colors.red, size, rotate)
       );
     }
     List<Widget> wids = [];
@@ -28,7 +30,8 @@ class WordCloud extends StatelessWidget{
     final screenSize = MediaQuery.of(context).size;
     final ratio = screenSize.width / screenSize.height;
     return Center(
-      child: FittedBox(
+      child: Container(
+        color: Colors.red.shade50,
         child: Scatter(
           fillGaps: true,
           delegate: ArchimedeanSpiralScatterDelegate(ratio: ratio),

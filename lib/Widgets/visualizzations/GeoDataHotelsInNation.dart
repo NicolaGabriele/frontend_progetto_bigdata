@@ -33,11 +33,11 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
   @override
   Widget build(BuildContext context) {
     print("VISUAL"+_markers[1].point.toString());
-    return Expanded(
+    return /*Expanded(
         flex: 1,
         child: Column(
           children: [
-            Container(height: 30,),
+            Container(height: 30,),*/
             Container(
                 width: 1280,
                 height: 720,
@@ -47,9 +47,8 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
                     borderRadius: BorderRadius.all(Radius.circular(20))
                 ),
                 child: buildMap()
-            ),
-          ],
-        )
+            //),
+              //]
     );
   }
 

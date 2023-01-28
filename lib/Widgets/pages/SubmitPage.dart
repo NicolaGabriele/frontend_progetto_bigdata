@@ -53,8 +53,7 @@ class _SubmitPageState extends State<SubmitPage>{
                 borderRadius: BorderRadius.circular(30),
                 color: Colors.red.shade50,
               ),
-              child: Expanded(
-                child: DropdownButton(
+              child: DropdownButton(
                   value: dropdownvalue,
                   items: visualMapping.keys.map((e) => DropdownMenuItem<String>(value: e,child: Text(e,textAlign: TextAlign.center))).toList(),
                   onChanged: (String? value)=>setState(()=>{
@@ -65,7 +64,6 @@ class _SubmitPageState extends State<SubmitPage>{
                   dropdownColor: Colors.red.shade50,
                   underline: Container(height: 2,color: Colors.red.shade700,),
                 ),
-              )
             )
         ),
         _formWidget,

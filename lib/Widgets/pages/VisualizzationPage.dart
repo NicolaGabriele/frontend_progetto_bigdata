@@ -24,8 +24,6 @@ class _VisualizzationPageState extends State<VisualizzationPage>{
   Widget build(BuildContext context) {
     //return GeoDataHotelsInNation();
     return Container(
-      width: (0.77)*MediaQuery.of(context).size.width,
-      color: Colors.white,
       child: Stack(
         alignment: Alignment.center,
         children: [
