@@ -9,7 +9,8 @@ class Utility{
                       coppieHotel_NegReviews = "/coppieHotel_NegReviews",
                       coppieHotel_PosReviews = "/coppieHotel_PosReviews",
                       averageScoreFilter = "/averageScoreFilter",
-                      reviewsNumberFilter = "/reviewsNumberFilter";
+                      reviewsNumberFilter = "/reviewsNumberFilter",
+                      naiveBayesian = "/naiveBayesian";
 
   static const List<String> nations = <String>[
     'Russia',

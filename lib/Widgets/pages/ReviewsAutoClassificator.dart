@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../REST/Query.dart';
+
 class ReviewsAutoClassificator extends StatefulWidget{
   @override
   State<StatefulWidget> createState()=>_ReviewsClassificatorState();
@@ -67,7 +69,7 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
           Padding(
               padding: const EdgeInsets.all(10),
               child: ElevatedButton(
-                onPressed: ()=>{},
+                onPressed: submit,
                 child: Text("submit"),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateColor.resolveWith((states) => Colors.red)
@@ -78,6 +80,10 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
       ),
       bottomNavigationBar: BottomAppBar(color: Colors.red, elevation: 10,child: Container(height: 20,),), //valore base 20
     );
+  }
+
+  void submit(){
+    Query.naiveBayesian("porco dio").then((value) => print(value));
   }
 
 }

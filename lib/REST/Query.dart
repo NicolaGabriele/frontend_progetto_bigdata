@@ -8,6 +8,7 @@ import 'package:frontend_progetto_bigdata/REST/RestManager.dart';
 import '../Models/CoppiaHotelNumRecensioni.dart';
 import '../Models/CoppiaHotelPunteggioMedio.dart';
 import '../Models/GeoData.dart';
+import '../models/NaiveBayesianResult.dart';
 import 'Utility.dart';
 
 class Query{
@@ -119,6 +120,16 @@ class Query{
       results.add(ReviewsNumberItem.fromJson(map));
     });
     return results;
+  }
+
+
+  static Future<List<NaiveBayesianResult>> naiveBayesian(String review) async{
+    var response = await RestManager.submitSparkJob(Utility.naiveBayesian, {'review':review});
+    List<dynamic> l = jsonDecode(response);
+    List<NaiveBayesianResult> res = [];
+    res.add(NaiveBayesianResult.fromJson(l.first));
+    print(res);
+    return res;
   }
 
 }
