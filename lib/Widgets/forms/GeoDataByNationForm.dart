@@ -89,34 +89,10 @@ class _GeoDataState extends State<GeoDataByNationForm> {
     );
 
     Query.geoDataHotelsInNation(_nation).then((value) => {
-      print("NATION: "+_nation),
-      print("FORM "+value[0].getLatitudine()),
       widget.visualizzation.setWidget(
         GeoDataHotelsInNation(coordinate: value)
       )
     });
-
-    //List<GeoData> coordinate = await Query.geoDataHotelsInNation(_nation!);
-
-    /*List<Widget> w = [];
-    coordinate.forEach((element) {w.add(
-      Padding(padding: EdgeInsets.only(top: 20),child: Text(element.getLatitudine())));
-    });
-
-    widget.visualizzation.setWidget(
-      Container(
-        width: 1000,
-        height: 300,
-        child: Scrollbar(
-            controller: ScrollController(),
-            scrollbarOrientation: ScrollbarOrientation.right,
-            thumbVisibility: true,
-            child: ListView(
-              children: w,
-            )
-        ),
-      )
-    );*/
 
   }//submitHotelDallaNazione
 

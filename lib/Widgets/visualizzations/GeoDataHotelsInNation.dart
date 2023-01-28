@@ -25,48 +25,59 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
   final PopupController _popupController = PopupController();
   MapController _mapController = MapController();
   double _zoom = 7;
+  LatLng _centro = new LatLng(39.366384, 16.226579);
 
-  List<LatLng> _latLngList = [];
-
+  //List<LatLng> _latLngList = [];
   var _markers = <Marker>[];
 
   @override
-  Widget build(BuildContext context) {
-    print("VISUAL"+_markers[1].point.toString());
-    return /*Expanded(
-        flex: 1,
-        child: Column(
-          children: [
-            Container(height: 30,),*/
-            Container(
-                width: 1280,
-                height: 720,
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    border: Border.all(width: 2.0),
-                    borderRadius: BorderRadius.all(Radius.circular(20))
-                ),
-                child: buildMap()
-            //),
-              //]
-    );
+  void initState() {
+    if (coord.length==0){
+      _markers=[];
+    }//if
+    else {
+      _markers = coord.map(
+              (point) =>
+              Marker(
+                //point: point,
+                point: new LatLng(double.parse(point.getLatitudine()),
+                    double.parse(point.getLongitudine())),
+                width: 60,
+                height: 60,
+                builder: (context) =>
+                    Icon(
+                      Icons.pin_drop,
+                      size: 60,
+                      color: Colors.red.shade900,
+                    ),
+              )).toList();
+      _centro=_markers[0].point;
+      //super.initState();
+    }//else
   }
 
   @override
-  void initState() {
-    _markers = coord.map(
-            (point) => Marker(
-              //point: point,
-              point: new LatLng(double.parse(point.getLatitudine()),double.parse(point.getLongitudine())),
-              width: 60,
-              height: 60,
-              builder: (context) => Icon(
-                Icons.pin_drop,
-                size: 60,
-                color: Colors.red.shade900,
-              ),
-            )).toList();
-    //super.initState();
+  Widget build(BuildContext context) {
+    //print("VISUAL"+_markers[1].point.toString());
+    if(_markers.length==0)
+      return new AlertDialog(
+        title: Text("Non abbiamo dati a disposizione riguardo a hotel che si trovano in questa Nazione", style: TextStyle(color: Colors.white)),
+        //content: Image.asset("/images/hotel.gif"),
+        backgroundColor: Colors.red,
+        //shape: CircleBorder(),
+      );
+    else {
+      return Container(
+          width: 1280,
+          height: 720,
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              border: Border.all(width: 2.0),
+              borderRadius: BorderRadius.all(Radius.circular(20))
+          ),
+          child: buildMap()
+      );
+    }
   }
 
   Widget buildMap(){
@@ -78,7 +89,7 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
           mapController: _mapController,
           options: MapOptions(
             zoom: _zoom,
-            center: _markers[1].point,
+            center: _centro,
             //bounds: LatLngBounds.fromPoints(lista latlong),
             plugins: [
               MarkerClusterPlugin(),

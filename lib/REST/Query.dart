@@ -18,10 +18,15 @@ class Query{
     List<GeoData> results = [];
     var response = await RestManager.submitSparkJob(Utility.geoDataHotelsInNation, {'nation':nation});
     List<dynamic> l = jsonDecode(response);
-    l.forEach((element) {
-      Map<String,dynamic> map = element;
-      results.add(GeoData.fromJson(map));
-    });
+    if (l.length==0){
+      return results;
+    }
+    else {
+      l.forEach((element) {
+        Map<String, dynamic> map = element;
+        results.add(GeoData.fromJson(map));
+      });
+    }
     return results;
   }
 
