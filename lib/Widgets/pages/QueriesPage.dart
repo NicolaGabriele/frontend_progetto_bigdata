@@ -10,7 +10,7 @@ class QueriesPage extends StatefulWidget{
 }
 
 class _QueriesPageState extends State<StatefulWidget>{
-  VisualizzationPage visualizzation = VisualizzationPage(widgets: Container(),);
+  VisualizzationPage visualizzation = VisualizzationPage(widgets: Expanded(child:Container()),);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

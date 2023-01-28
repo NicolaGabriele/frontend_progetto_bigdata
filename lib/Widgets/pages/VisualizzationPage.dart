@@ -23,23 +23,7 @@ class _VisualizzationPageState extends State<VisualizzationPage>{
   @override
   Widget build(BuildContext context) {
     //return GeoDataHotelsInNation();
-    return Container(
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Opacity(
-            opacity: 1,
-            child: Padding(
-              padding: EdgeInsets.only(left: 800, top: 500),
-              /*child: Image.asset(
-                "/images/visual.jpg",
-              ),*/
-            ),
-          ),
-          widget.widgets
-        ],
-      ),
-    );
+    return widget.widgets;
   }
 
 }

@@ -29,7 +29,6 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
     '3 anni': 1000
   };
 
-
   String? _time = _timingMap.keys.first;
   String? _hotel = "nome hotel";
   @override
@@ -60,13 +59,12 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.red.shade50,
                   ),
-                  child: Expanded(
-                    child:DropdownButton(
+                  child:DropdownButton(
                         value: _time,
                         items: _timingMap.keys.map((e) => DropdownMenuItem(value: e, child: Text(e,textAlign: TextAlign.center))).toList(),
                         onChanged: (String? value)=> setState(()=>_time = value)
                     )
-                  )
+
               )
           ),
           Padding(
@@ -83,12 +81,14 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
 
   void submitRecensioniDallaData() async{
     widget.visualizzation.setWidget(
-          const SizedBox(
-            width: 50,
-            height: 50,
-            child: CircularProgressIndicator(),
-          )
-
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator()
+            ],
+          ),
+        )
     );
 
     List<String> s = await Query.recensioniHotelDallaData(_hotel!, _timingMap[_time]!);
@@ -97,18 +97,18 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
         Padding(padding: EdgeInsets.only(top:20),child: Text(element)));
     });
     widget.visualizzation.setWidget(
-      Container(
-        width: 1000,
-        height: 300,
-        child: Scrollbar(
-          controller: ScrollController(),
-          scrollbarOrientation: ScrollbarOrientation.right,
-          thumbVisibility: true,
-          child: ListView(
-            children: l,
+       Container(
+            width: 1000,
+            height: 300,
+            child: Scrollbar(
+                scrollbarOrientation: ScrollbarOrientation.right,
+                interactive: true,
+                thumbVisibility: true,
+                child: ListView(
+                  children: l,
+                )
+            ),
           )
-        ),
-      )
     );
   }
 

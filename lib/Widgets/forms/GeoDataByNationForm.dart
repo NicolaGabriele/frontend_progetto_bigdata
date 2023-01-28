@@ -81,11 +81,14 @@ class _GeoDataState extends State<GeoDataByNationForm> {
     //print(_nation);
 
     widget.visualizzation.setWidget(
-      const SizedBox(
-        width: 62,
-        height: 62,
-        child: CircularProgressIndicator(backgroundColor: Colors.red, color: Colors.white),
-      )
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator()
+            ],
+          ),
+        )
     );
 
     Query.geoDataHotelsInNation(_nation).then((value) => {

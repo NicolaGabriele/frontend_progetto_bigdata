@@ -30,10 +30,13 @@ class _WordCountFormState extends State<WordCountForm>{
 
   void submit() {
     widget.visualizzation.setWidget(
-      Container(
-        width: 50,
-        height: 50,
-        child: CircularProgressIndicator(backgroundColor: Colors.red, color: Colors.white),
+      Expanded(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator()
+          ],
+        ),
       )
     );
 
