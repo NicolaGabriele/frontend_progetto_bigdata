@@ -9,6 +9,7 @@ import '../Models/CoppiaHotelNumRecensioni.dart';
 import '../Models/CoppiaHotelPunteggioMedio.dart';
 import '../Models/GeoData.dart';
 import '../models/NaiveBayesianResult.dart';
+import '../models/TimeScoreItem.dart';
 import 'Utility.dart';
 
 class Query{
@@ -131,6 +132,17 @@ class Query{
     res.add(NaiveBayesianResult.fromJson(l.first));
     print(res);
     return res;
+  }
+
+  static Future<List<TimeScoreItem>> timeScoreEvolution(String hotel)async{
+    List<TimeScoreItem> results = [];
+    var response = await RestManager.submitSparkJob(Utility.timeScoreEvolution, {'hotel':hotel});
+    List<dynamic> l = jsonDecode(response);
+    l.forEach((element) {
+      Map<String,dynamic> map = element;
+      results.add(TimeScoreItem.fromJson(map));
+    });
+    return results;
   }
 
 }
