@@ -13,7 +13,6 @@ class NaiveBayesianResult{
   }
 
   factory NaiveBayesianResult.fromJson(Map<String, dynamic> json){
-    print(json);
     double classe = json['classe'];
     List<dynamic> aux = json['probabilita'];
     List<double> lista = [];

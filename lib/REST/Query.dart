@@ -126,6 +126,7 @@ class Query{
   static Future<List<NaiveBayesianResult>> naiveBayesian(String review) async{
     var response = await RestManager.submitSparkJob(Utility.naiveBayesian, {'review':review});
     List<dynamic> l = jsonDecode(response);
+    print(response);
     List<NaiveBayesianResult> res = [];
     res.add(NaiveBayesianResult.fromJson(l.first));
     print(res);

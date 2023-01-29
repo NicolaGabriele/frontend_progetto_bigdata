@@ -12,6 +12,7 @@ class ReviewsAutoClassificator extends StatefulWidget{
 class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
   String _recensione = "scrivi qui la tua recensione";
   Widget _resultWid = defaultResultWidget();
+  static PageState _pageState = PageState.Not_Loading;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +52,7 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
                padding:EdgeInsets.all(10),
              child: TextField(
                decoration: InputDecoration(
-                 label: Text(_recensione),
+                 label: Text("inserisci la tua recensione"),
                ),
                onChanged: (value)=>_recensione = value,
                maxLines: null,
@@ -75,16 +76,55 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
   }
 
   void submit() async{
+    setState(()=>{
+      _pageState = PageState.Loading,
+      _resultWid = defaultResultWidget()
+    });
     NaiveBayesianResult result = (await Query.naiveBayesian(_recensione)).first;
-    print("classe: ${result.getClasse()}");
-    print("probs: ${result.getProb()}");
-    /*setState(()=>{
-      buildResultWidget(result)
-    });*/
+    setState(()=>{
+      _resultWid = buildResultWidget(result)
+    });
   }
 
   Widget buildResultWidget(NaiveBayesianResult result){
-    return Container();
+    int posProb = (result.getProb().first*100).toInt();
+    int negProb = ((result.getProb()[1])*100).toInt();
+    return Row(
+      children: [
+        Expanded(
+          flex: (negProb>10)?(negProb/10).round():negProb,
+            child: Opacity(
+                opacity: 0.9,
+                child:Container(
+                  alignment: Alignment.center,
+                  height: double.infinity,
+                    color: Colors.red,
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      "LA TUA RECENSIONE E' NEGATIVA CON UNA PROBABILITA' DEL ${negProb}%",
+                      style: TextStyle(fontStyle: FontStyle.italic, fontSize: 30),
+                    ),
+                )
+            )
+        ),
+        Expanded(
+            flex: (posProb>10)?(posProb/10).round():posProb,
+            child: Opacity(
+                opacity: 0.9,
+                child:Container(
+                  alignment: Alignment.center,
+                  height: double.infinity,
+                    color: Colors.green,
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      "LA TUA RECENSIONE E' POSITIVA CON UNA PROBABILITA' DEL ${posProb}%",
+                      style: TextStyle(fontStyle: FontStyle.italic, fontSize: 30),
+                    ),
+                )
+            )
+        )
+      ],
+    );
   }
 
   static Widget defaultResultWidget(){
@@ -97,17 +137,31 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
             Expanded(child: Opacity(opacity: 0.9,child:Container(color: Colors.green)))
           ],
         ),
-        const Text(
-          "POSITIVE \\ NEGATIVE \n CLASSIFICATOR TOOL",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 50,
-            fontStyle: FontStyle.italic,
-          ),
-        )
+        formatPage()
       ],
     );
   }
 
+  static Widget formatPage(){
+    return (_pageState == PageState.Loading)?
+        const SizedBox(
+          width: 50,
+          height: 50,
+          child: CircularProgressIndicator(color: Colors.black,),
+        ):
+    const Text(
+      "NEGATIVE \\ POSITIVE \n CLASSIFICATOR TOOL",
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 50,
+        fontStyle: FontStyle.italic,
+      ),
+    );
+  }
 
+}
+
+enum PageState{
+  Loading,
+  Not_Loading
 }
