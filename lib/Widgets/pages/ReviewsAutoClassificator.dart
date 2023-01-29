@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../REST/Query.dart';
+import '../../models/NaiveBayesianResult.dart';
 
 class ReviewsAutoClassificator extends StatefulWidget{
   @override
@@ -10,6 +11,7 @@ class ReviewsAutoClassificator extends StatefulWidget{
 
 class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
   String _recensione = "scrivi qui la tua recensione";
+  Widget _resultWid = defaultResultWidget();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,17 +44,7 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              width: double.infinity,
-              color: Colors.green,
-              alignment: Alignment.center,
-              child: Text(
-                "Positive",
-                style: TextStyle(
-                  fontSize: 50
-                ),
-              ),
-            )
+            child: _resultWid
           ),
           Divider(color: Colors.black,height: 2,thickness: 2),
            Padding(
@@ -82,8 +74,40 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
     );
   }
 
-  void submit(){
-    Query.naiveBayesian("porco dio").then((value) => print(value));
+  void submit() async{
+    NaiveBayesianResult result = (await Query.naiveBayesian(_recensione)).first;
+    print("classe: ${result.getClasse()}");
+    print("probs: ${result.getProb()}");
+    /*setState(()=>{
+      buildResultWidget(result)
+    });*/
   }
+
+  Widget buildResultWidget(NaiveBayesianResult result){
+    return Container();
+  }
+
+  static Widget defaultResultWidget(){
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Row(
+          children: [
+            Expanded(child: Opacity(opacity: 0.9,child:Container(color: Colors.red))),
+            Expanded(child: Opacity(opacity: 0.9,child:Container(color: Colors.green)))
+          ],
+        ),
+        const Text(
+          "POSITIVE \\ NEGATIVE \n CLASSIFICATOR TOOL",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 50,
+            fontStyle: FontStyle.italic,
+          ),
+        )
+      ],
+    );
+  }
+
 
 }
