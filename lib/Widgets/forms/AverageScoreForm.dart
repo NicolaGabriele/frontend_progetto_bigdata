@@ -70,7 +70,7 @@ class _AverageScoreState extends State<AverageScoreForm>{
     );
     Query.averageScoreFilter(_selectedScore).then(
             (value) => widget.visualizzation.setWidget(
-              AverageScoreVisualizzation(input: value.getRange(value.length-5, value.length).toList())
+              AverageScoreVisualizzation(input: value)
             ) 
     );
   }

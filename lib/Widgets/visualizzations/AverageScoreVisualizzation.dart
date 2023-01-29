@@ -24,6 +24,13 @@ class _AverageScoreVisualState extends State<AverageScoreVisualizzation>{
         interactive: true,
         child: ListView(
           children: [
+            const Padding(
+                padding: EdgeInsets.all(20),
+              child: Text(
+                "TOP 5 HOTELS",
+                textAlign: TextAlign.center,
+              ),
+            ),
             Container(
                 padding: EdgeInsets.only(bottom: 50),
                 width: 500,
@@ -38,11 +45,14 @@ class _AverageScoreVisualState extends State<AverageScoreVisualizzation>{
   }
 
   Widget buildMap(){
-    List<GeoData> geoData = widget.input
-                            .map(
-            (e) => GeoData(e.getLatitudine(), e.getLongitudine())
-    ).toList();
-    return GeoDataHotelsInNation(coordinate: geoData);
+    List<GeoData> lista = [];
+    for(FilteredItem i in widget.input){
+      if( i.getLatitudine().compareTo("NA") != 0 && i.getLongitudine().compareTo("N") != 0 ) {
+        lista.add(GeoData(i.getLatitudine(), i.getLongitudine()));
+      }
+    }
+    //geoData.forEach((element) {print(element);});
+    return GeoDataHotelsInNation(coordinate: lista);
   }
 
   Widget buildChart(){
@@ -50,7 +60,7 @@ class _AverageScoreVisualState extends State<AverageScoreVisualizzation>{
       [
         Series<FilteredItem,String>(
             id: "test",
-            data: widget.input,
+            data: widget.input.getRange(widget.input.length-5, widget.input.length).toList(),
             domainFn: (FilteredItem fi, _)=>fi.getNomeHotel(),
             measureFn: (FilteredItem fi, _)=> double.parse(fi.getPunteggio())
         )
