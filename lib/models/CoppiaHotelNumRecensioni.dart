@@ -13,5 +13,6 @@ class CoppiaHotelNumRecensioni{
   }
 
   factory CoppiaHotelNumRecensioni.fromJson(Map<String,dynamic> json)=>
-      CoppiaHotelNumRecensioni(json['hotel'], int.parse(json['numRecensioni']));
+      CoppiaHotelNumRecensioni(json['hotel'], json['numRecensioni'].toInt());
+
 }

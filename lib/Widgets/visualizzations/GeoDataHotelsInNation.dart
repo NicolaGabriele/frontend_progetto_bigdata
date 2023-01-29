@@ -122,7 +122,7 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
                   popupController: _popupController,
                   popupBuilder: (_, marker) => Container(
                     color: Colors.amberAccent,
-                    child: Text("Hotel Name"),
+                    //child: Text("Hotel Name"),
                   )),
               builder: (context, markers) {
                 return Container(

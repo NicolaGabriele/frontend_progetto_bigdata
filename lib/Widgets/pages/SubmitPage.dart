@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_progetto_bigdata/Widgets/forms/AverageScoreForm.dart';
+import 'package:frontend_progetto_bigdata/Widgets/forms/CoppieHotelRevForm.dart';
 import 'package:frontend_progetto_bigdata/Widgets/forms/GeoDataByNationForm.dart';
 import 'package:frontend_progetto_bigdata/Widgets/forms/RecensioniDallaDataForm.dart';
 import 'package:frontend_progetto_bigdata/Widgets/forms/TimeScoreForm.dart';
@@ -24,7 +25,8 @@ class _SubmitPageState extends State<SubmitPage>{
      'recensioni hotel':Form.RECENSIONI_HOTEL,
      'Get Hotels in Nation':Form.HOTEL_IN_NATION,
      'Average Score Filter':Form.AVERAGE_SCORE_FILTER,
-     'Time Score Evolution':Form.TIME_SCORE_EVOLUTION
+     'Time Score Evolution':Form.TIME_SCORE_EVOLUTION,
+     'Coppie Hotel-Recensioni':Form.HOTEL_REVIEW,
   };
 
   String dropdownvalue = visualMapping.keys.first;
@@ -88,6 +90,7 @@ class _SubmitPageState extends State<SubmitPage>{
       case Form.HOTEL_IN_NATION: _formWidget = GeoDataByNationForm(visualizzation: widget.visualizzation, form: this._form);break;
       case Form.AVERAGE_SCORE_FILTER: _formWidget = AverageScoreForm(visualizzation: widget.visualizzation);break;
       case Form.TIME_SCORE_EVOLUTION: _formWidget = TimeScoreForm(visualizzation: widget.visualizzation);break;
+      case Form.HOTEL_REVIEW: _formWidget = CoppieHotelRevForm(visualizzation: widget.visualizzation, form: this._form);break;
       default: _formWidget=Container();break;
     }
   }
@@ -103,5 +106,6 @@ enum Form{
   RECENSIONI_HOTEL,
   HOTEL_IN_NATION,
   AVERAGE_SCORE_FILTER,
-  TIME_SCORE_EVOLUTION
+  TIME_SCORE_EVOLUTION,
+  HOTEL_REVIEW
 }
