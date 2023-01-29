@@ -10,7 +10,10 @@ class Utility{
                       coppieHotel_PosReviews = "/coppieHotel_PosReviews",
                       averageScoreFilter = "/averageScoreFilter",
                       reviewsNumberFilter = "/reviewsNumberFilter",
-                      naiveBayesian = "/naiveBayesian";
+                      naiveBayesian = "/naiveBayesian",
+                      timeScoreEvolution = "/timeScoreEvolution";
+
+
 
   static const List<String> nations = <String>[
     'Russia',
