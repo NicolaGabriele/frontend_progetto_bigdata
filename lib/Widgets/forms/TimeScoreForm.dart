@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_progetto_bigdata/REST/Utility.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
+import 'package:frontend_progetto_bigdata/Widgets/visualizzations/TimeScoreVisualization.dart';
 import 'package:frontend_progetto_bigdata/models/TimeScoreItem.dart';
 
 import '../../REST/Query.dart';
@@ -73,27 +74,11 @@ class _TimeScoreState extends State<TimeScoreForm> {
           ),
         )
     );
-
-    //TODO, bisogna aggiungere la pagina grafica in VISUALIZATION
-    List<TimeScoreItem> s = await Query.timeScoreEvolution( _hotel! );
-    List<Widget> l = [];
-    s.forEach((element) {
-      l.add(Padding(padding: EdgeInsets.only(top: 20), child: Text(element.getData() + "," + element.getScore().toString())));
-    });
-    widget.visualizzation.setWidget(
-        Container(
-          width: 1000,
-          height: 300,
-          child: Scrollbar(
-              scrollbarOrientation: ScrollbarOrientation.right,
-              interactive: true,
-              thumbVisibility: true,
-              child: ListView(
-                children: l,
-              )
-          ),
+    Query.timeScoreEvolution( _hotel! ).then(
+            (value) => widget.visualizzation.setWidget( TimeScoreVisualization(input: value,)
         )
     );
+
   }
 
 }

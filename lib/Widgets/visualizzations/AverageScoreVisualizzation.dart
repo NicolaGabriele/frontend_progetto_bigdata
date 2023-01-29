@@ -4,6 +4,7 @@ import 'package:frontend_progetto_bigdata/Widgets/visualizzations/GeoDataHotelsI
 
 import '../../Models/FilteredItem.dart';
 import 'package:charts_flutter_new/flutter.dart';
+
 class AverageScoreVisualizzation extends StatefulWidget{
   List<FilteredItem> input;
   AverageScoreVisualizzation({required this.input});

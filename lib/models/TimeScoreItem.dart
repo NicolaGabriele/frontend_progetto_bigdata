@@ -9,7 +9,22 @@ class TimeScoreItem {
     return _data;
   }
 
-  double getScore(){
+  int getAnno(){
+    List<String> splitted = _data.split("/");
+    return int.parse(splitted.elementAt(2));
+  }
+
+  int getMese(){
+    List<String> splitted = _data.split("/");
+    return int.parse(splitted.elementAt(0));
+  }
+
+  int getGiorno(){
+    List<String> splitted = _data.split("/");
+    return int.parse(splitted.elementAt(1));
+  }
+
+  double getPunteggio(){
     return _punteggio;
   }
 
