@@ -92,7 +92,7 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
     return Row(
       children: [
         Expanded(
-          flex: (negProb>10)?(negProb/10).round():negProb,
+          flex: flexFactor(negProb),
             child: Opacity(
                 opacity: 0.9,
                 child:Container(
@@ -108,7 +108,7 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
             )
         ),
         Expanded(
-            flex: (posProb>10)?(posProb/10).round():posProb,
+            flex: flexFactor(posProb),
             child: Opacity(
                 opacity: 0.9,
                 child:Container(
@@ -157,6 +157,18 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
         fontStyle: FontStyle.italic,
       ),
     );
+  }
+  
+  int flexFactor(int prob){
+    return  (prob >= 0 && prob < 11)?1:
+            (prob > 10 && prob <21)?2:
+            (prob > 20 && prob < 31)?3:
+            (prob > 30 && prob < 41 )?4:
+            (prob > 40 && prob < 51)?5:
+            (prob > 50 && prob < 61)?6:
+            (prob > 60 && prob < 71)?7:
+            (prob > 70 && prob < 81)?8:
+            (prob > 80 && prob < 91)?9:10;
   }
 
 }
