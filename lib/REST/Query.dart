@@ -33,9 +33,9 @@ class Query{
   }
 
 
-  static Future<List<WordCountItem>> wordCountPositive()async{
+  static Future<List<WordCountItem>> wordCountPositive(String hotel)async{
     List<WordCountItem> results = [];
-    var response = await RestManager.submitSparkJob(Utility.wordCountPositive,Map());
+    var response = await RestManager.submitSparkJob(Utility.wordCountPositive, {'hotel':hotel});
     List<dynamic> l = jsonDecode(response);
     l.forEach((element) {
       Map<String,dynamic> map = element;
@@ -44,9 +44,9 @@ class Query{
     return results;
   }
 
-  static Future<List<WordCountItem>> wordCountNegative()async{
+  static Future<List<WordCountItem>> wordCountNegative(String hotel)async{
     List<WordCountItem> results = [];
-    var response = await RestManager.submitSparkJob(Utility.wordCountNegative, Map());
+    var response = await RestManager.submitSparkJob(Utility.wordCountNegative, {'hotel':hotel});
     List<dynamic> l = jsonDecode(response);
     l.forEach((element) {
       Map<String,dynamic> map = element;

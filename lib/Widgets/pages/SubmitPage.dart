@@ -5,6 +5,7 @@ import 'package:frontend_progetto_bigdata/Widgets/forms/GeoDataByNationForm.dart
 import 'package:frontend_progetto_bigdata/Widgets/forms/RecensioniDallaDataForm.dart';
 import 'package:frontend_progetto_bigdata/Widgets/forms/TimeScoreForm.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
+import 'package:frontend_progetto_bigdata/Widgets/forms/WordCountForm.dart';
 
 import '../forms/WordCountForm.dart';
 class SubmitPage extends StatefulWidget{
@@ -107,5 +108,5 @@ enum Form{
   HOTEL_IN_NATION,
   AVERAGE_SCORE_FILTER,
   TIME_SCORE_EVOLUTION,
-  HOTEL_REVIEW
+  HOTEL_REVIEW,
 }
