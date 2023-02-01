@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:frontend_progetto_bigdata/Models/GeoData.dart';
 import 'package:frontend_progetto_bigdata/REST/Utility.dart';

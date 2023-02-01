@@ -7,6 +7,7 @@ import 'package:frontend_progetto_bigdata/Widgets/forms/TimeScoreForm.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
 import 'package:frontend_progetto_bigdata/Widgets/forms/WordCountForm.dart';
 
+import '../forms/AllFiltersForm.dart';
 import '../forms/WordCountForm.dart';
 class SubmitPage extends StatefulWidget{
 
@@ -28,6 +29,7 @@ class _SubmitPageState extends State<SubmitPage>{
      'Average Score Filter':Form.AVERAGE_SCORE_FILTER,
      'Time Score Evolution':Form.TIME_SCORE_EVOLUTION,
      'Coppie Hotel-Recensioni':Form.HOTEL_REVIEW,
+     'All Filters':Form.ALL_FILTERS,
   };
 
   String dropdownvalue = visualMapping.keys.first;
@@ -92,6 +94,7 @@ class _SubmitPageState extends State<SubmitPage>{
       case Form.AVERAGE_SCORE_FILTER: _formWidget = AverageScoreForm(visualizzation: widget.visualizzation);break;
       case Form.TIME_SCORE_EVOLUTION: _formWidget = TimeScoreForm(visualizzation: widget.visualizzation);break;
       case Form.HOTEL_REVIEW: _formWidget = CoppieHotelRevForm(visualizzation: widget.visualizzation, form: this._form);break;
+      case Form.ALL_FILTERS: _formWidget = AllFiltersForm(visualizzation: widget.visualizzation, form: this._form);break;
       default: _formWidget=Container();break;
     }
   }
@@ -109,4 +112,5 @@ enum Form{
   AVERAGE_SCORE_FILTER,
   TIME_SCORE_EVOLUTION,
   HOTEL_REVIEW,
+  ALL_FILTERS,
 }

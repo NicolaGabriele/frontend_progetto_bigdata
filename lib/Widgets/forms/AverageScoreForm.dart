@@ -5,6 +5,7 @@ import 'package:frontend_progetto_bigdata/Widgets/visualizzations/AverageScoreVi
 import '../../REST/Query.dart';
 
 class AverageScoreForm extends StatefulWidget{
+
   VisualizzationPage visualizzation;
   AverageScoreForm({required this.visualizzation});
   @override

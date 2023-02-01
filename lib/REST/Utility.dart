@@ -11,7 +11,9 @@ class Utility{
                       averageScoreFilter = "/averageScoreFilter",
                       reviewsNumberFilter = "/reviewsNumberFilter",
                       naiveBayesian = "/naiveBayesian",
-                      timeScoreEvolution = "/timeScoreEvolution";
+                      timeScoreEvolution = "/timeScoreEvolution",
+
+                      allFilters = "/allFilters";
 
 
 

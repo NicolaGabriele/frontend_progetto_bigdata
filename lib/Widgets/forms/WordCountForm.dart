@@ -88,15 +88,35 @@ class _WordCountFormState extends State<WordCountForm>{
 
     if(widget.form == sub.Form.WORD_COUNT_POSITIVE) {
       Query.wordCountPositive(_hotel!).then((value) => {
-        widget.visualizzation.setWidget(
-            WordCountVisualizzation(data:value)
-        )
+        if(value.length==0){
+          widget.visualizzation.setWidget(new AlertDialog(
+                  title: Text("Non abbiamo dati a disposizione riguardo a hotel con questo nome", style: TextStyle(color: Colors.white)),
+                  backgroundColor: Colors.red,
+            )
+          ),
+        }
+        else
+          {
+            widget.visualizzation.setWidget(
+                WordCountVisualizzation(data: value)
+            )
+          }
       });
     } else {
       Query.wordCountNegative(_hotel!).then((value) => {
-        widget.visualizzation.setWidget(
-            WordCountVisualizzation(data:value)
-        )
+        if(value.length==0){
+          widget.visualizzation.setWidget(new AlertDialog(
+            title: Text("Non abbiamo dati a disposizione riguardo a hotel con questo nome", style: TextStyle(color: Colors.white)),
+            backgroundColor: Colors.red,
+          )
+          ),
+        }
+        else
+          {
+            widget.visualizzation.setWidget(
+                WordCountVisualizzation(data: value)
+            )
+          }
       });
     }
 
