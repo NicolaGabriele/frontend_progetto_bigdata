@@ -126,8 +126,62 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
                   popupSnap: PopupSnap.markerTop,
                   popupController: _popupController,
                   popupBuilder: (_, marker) => Container(
-                    color: Colors.amberAccent,
-                    child: Text(textInPopup),
+                      width: 300,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 300,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage('https://images.pexels.com/photos/2135/food-france-morning-breakfast.jpg'),
+                                  fit: BoxFit.fitWidth,
+                                  filterQuality: FilterQuality.high),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                              color: Colors.red,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10 , left: 10 , right: 10),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 100,
+                                  child: Text(
+                                    'Hotel Name',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.fade,
+                                    softWrap: false,
+                                  ),
+                                ),
+                                const Spacer(),
+                                Text(
+                                  'Score se riusciamo',
+                                  // widget.data!.date!,
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10 , left: 10 , right: 10),
+                            child: Text(
+                              'Dettagli hotel (indirizzo, numrecensioni, ecc...)',
+                              maxLines: 3,
+                            ),
+                          ),
+
+                        ],
+                      ),
                   )),
               builder: (context, markers) {
                 return Container(
