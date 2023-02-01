@@ -30,6 +30,8 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
   //List<LatLng> _latLngList = [];
   var _markers = <Marker>[];
 
+  var textInPopup = "";
+
   @override
   void initState() {
     if (coord.length==0){
@@ -113,6 +115,9 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
                 padding: EdgeInsets.all(50),
               ),
               markers: _markers,
+              onMarkerTap: (marker) => {
+                textInPopup = marker.point.latitude.toString()+marker.point.longitude.toString()
+              },
               polygonOptions: PolygonOptions(
                   borderColor: Colors.white,
                   color: Colors.red,
@@ -122,7 +127,7 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
                   popupController: _popupController,
                   popupBuilder: (_, marker) => Container(
                     color: Colors.amberAccent,
-                    child: Text("Hotel Name"),
+                    child: Text(textInPopup),
                   )),
               builder: (context, markers) {
                 return Container(

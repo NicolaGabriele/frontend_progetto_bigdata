@@ -126,7 +126,7 @@ class _AllFiltersFormState extends State<AllFiltersForm> {
 
     if (_nation == null || _nation == "") _nation = "all";
     if (_score == null || _score == "") _score = "all";
-    if (_num == null || _num == "") _nation = "all";
+    if (_num == null || _num == "") _num = "all";
 
     debugPrint(_nation);
     debugPrint(_score);
