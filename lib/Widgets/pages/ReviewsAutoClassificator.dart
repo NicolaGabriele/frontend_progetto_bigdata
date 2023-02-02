@@ -31,7 +31,7 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
               ),
               const Flexible(
                 child: Text(
-                  'Hotel Reviews Analitycs',
+                  'Hotel Reviews Analytics',
                   style: TextStyle(
                       fontSize: 50,
                       fontStyle: FontStyle.italic

@@ -29,7 +29,7 @@ class _QueriesPageState extends State<StatefulWidget>{
                 ),
                 const Flexible(
                   child: Text(
-                    'Hotel Reviews Analitycs',
+                    'Hotel Reviews Analytics',
                     style: TextStyle(
                         fontSize: 50,
                         fontStyle: FontStyle.italic

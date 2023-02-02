@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hotel Reviews Analitycs',
+      title: 'Hotel Reviews Analytics',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: MyHomePage(title: 'Hotel Reviews Analitycs'),
+      home: MyHomePage(title: 'Hotel Reviews Analytics'),
     );
   }
 }
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const Flexible(
                 child: Text(
-                  'Hotel Reviews Analitycs',
+                  'Hotel Reviews Analytics',
                   style: TextStyle(
                       fontSize: 50,
                       fontStyle: FontStyle.italic

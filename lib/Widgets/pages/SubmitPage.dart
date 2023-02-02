@@ -21,15 +21,15 @@ class SubmitPage extends StatefulWidget{
 class _SubmitPageState extends State<SubmitPage>{
 
    static Map<String,Form> visualMapping = {
-     'select query': Form.NO_SELECTED,
-    'negative reviews word count':Form.WORD_COUNT_NEGATIVE,
-    'positive reviews word count': Form.WORD_COUNT_POSITIVE,
-     'recensioni hotel':Form.RECENSIONI_HOTEL,
-     'Get Hotels in Nation':Form.HOTEL_IN_NATION,
-     'Average Score Filter':Form.AVERAGE_SCORE_FILTER,
-     'Time Score Evolution':Form.TIME_SCORE_EVOLUTION,
+     'Select a query': Form.NO_SELECTED,
+     'Negative reviews word count':Form.WORD_COUNT_NEGATIVE,
+     'Positive reviews word count': Form.WORD_COUNT_POSITIVE,
+     "Hotel's review":Form.RECENSIONI_HOTEL,
+     'Get hotels in nation':Form.HOTEL_IN_NATION,
+     'Average score filter':Form.AVERAGE_SCORE_FILTER,
+     'Time score evolution':Form.TIME_SCORE_EVOLUTION,
      'Coppie Hotel-Recensioni':Form.HOTEL_REVIEW,
-     'All Filters':Form.ALL_FILTERS,
+     'Ricerca hotel avanzata':Form.ALL_FILTERS,
   };
 
   String dropdownvalue = visualMapping.keys.first;

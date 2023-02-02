@@ -116,7 +116,7 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
               ),
               markers: _markers,
               onMarkerTap: (marker) => {
-                textInPopup = marker.point.latitude.toString()+marker.point.longitude.toString()
+                textInPopup = marker.point.latitude.toString()+" "+marker.point.longitude.toString()
               },
               polygonOptions: PolygonOptions(
                   borderColor: Colors.white,

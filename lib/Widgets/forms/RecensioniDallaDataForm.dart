@@ -26,11 +26,13 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
     '3 mesi': 90,
     '6 mesi':180,
     'un anno': 365,
-    '3 anni': 1000
+    '3 anni': 1095
   };
 
+  static const List<String> list = Utility.hotels;
   String? _time = _timingMap.keys.first;
-  String? _hotel = "nome hotel";
+  String? _hotel = "";
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,13 +44,26 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
                 width: 200,
                 height: 50,
                 color: Colors.red.shade50,
-                child: TextField(
-                  decoration: InputDecoration(
-                      label: Text(_hotel!),
-                      border: OutlineInputBorder(),
-                  ),
-                  onSubmitted: (value)=>_hotel = value,
-                  onChanged: (value)=>_hotel = value,
+                child: Autocomplete<String>(
+                  fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
+                    return TextField(
+                      controller: textEditingController,
+                      focusNode: focusNode,
+                      onEditingComplete: onFieldSubmitted,
+                      onSubmitted: (value) => _hotel = value,
+                      onChanged: (value) => _hotel = value,
+                      decoration: const InputDecoration(
+                        label: Text("Nome hotel:"),
+                        border: OutlineInputBorder(),
+                      ),
+                    );
+                  },
+                  optionsBuilder: (TextEditingValue textEditingValue) {
+                    return list.where((String option) {
+                      return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                    });
+                  },
+                  onSelected: (value) => _hotel = value,
                 ),
               ),
           ),
@@ -69,6 +84,10 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
           ),
           Padding(
             padding: EdgeInsets.only(left: 50,top: 10),
+            child: Text("*Data di riferimento: 8/3/2017"),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 50,top: 10),
             child: ElevatedButton(
                 onPressed: submitRecensioniDallaData,//()=>{/*TODO*/},
                 child: Text('submit',textAlign: TextAlign.center)
@@ -79,7 +98,7 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
     );
   }
 
-  void submitRecensioniDallaData() async{
+  void submitRecensioniDallaData() async {
     widget.visualizzation.setWidget(
         Expanded(
           child: Row(
@@ -91,13 +110,22 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
         )
     );
 
-    List<String> s = await Query.recensioniHotelDallaData(_hotel!, _timingMap[_time]!);
-    List<Widget> l = [];
-    s.forEach((element) {l.add(
-        Padding(padding: EdgeInsets.only(top:20),child: Text(element)));
-    });
-    widget.visualizzation.setWidget(
-       Container(
+    List<String> s = await Query.recensioniHotelDallaData(
+        _hotel!, _timingMap[_time]!);
+    if (s.length == 0) {
+        widget.visualizzation.setWidget(new AlertDialog(
+        title: Text("Non abbiamo dati a disposizione riguardo a hotel con questo nome e in questa data", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.red,
+      ) );
+    }
+    else {
+      List<Widget> l = [];
+      s.forEach((element) {
+        l.add(
+            Padding(padding: EdgeInsets.only(top: 20), child: Text(element)));
+      });
+      widget.visualizzation.setWidget(
+          Container(
             width: 1000,
             height: 300,
             child: Scrollbar(
@@ -109,7 +137,8 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
                 )
             ),
           )
-    );
+      );
+    }
   }
 
 }
