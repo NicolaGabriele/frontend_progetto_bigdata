@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_progetto_bigdata/Models/FilteredItem.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
 import 'package:frontend_progetto_bigdata/Widgets/visualizzations/AverageScoreVisualizzation.dart';
 
@@ -70,10 +71,19 @@ class _AverageScoreState extends State<AverageScoreForm>{
         )
     );
     Query.averageScoreFilter(_selectedScore).then(
-            (value) => widget.visualizzation.setWidget(
-              AverageScoreVisualizzation(input: value)
-            ) 
+            (value) =>
+            {
+              value.sort(compare),
+              widget.visualizzation.setWidget(
+                  AverageScoreVisualizzation(input: value)
+              )
+            }
     );
+  }
+
+  int compare(FilteredItem it1, FilteredItem it2){
+    if (double.parse(it1.getPunteggio())<=double.parse(it2.getPunteggio())) return -1;
+    return 1;
   }
 
 }

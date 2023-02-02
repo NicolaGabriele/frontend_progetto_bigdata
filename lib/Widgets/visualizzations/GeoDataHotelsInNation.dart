@@ -161,12 +161,13 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
                             child: Row(
                               children: [
                                 SizedBox(
-                                  width: 100,
+                                  width: 200,
                                   child: Text(
                                     coord.firstWhere((element) => element==GeoData("","","",lat, lng)).getNome(),
                                     maxLines: 1,
                                     overflow: TextOverflow.fade,
                                     softWrap: false,
+                                    style: new TextStyle(fontWeight: FontWeight.bold)
                                   ),
                                 ),
                                 const Spacer(),

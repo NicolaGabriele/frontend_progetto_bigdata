@@ -1,4 +1,6 @@
-class FilteredItem{
+import 'package:frontend_progetto_bigdata/Models/FilteredItem.dart';
+
+class FilteredItem {
   String _indirizzo;
   String _punteggio;
   String _nomeHotel;
@@ -28,4 +30,5 @@ class FilteredItem{
 
   factory FilteredItem.fromJson(Map<String,dynamic> json)=>
       FilteredItem(json['indirizzo'], json['punteggio'], json['nomeHotel'], json['latitudine'], json['longitudine']);
+
 }
