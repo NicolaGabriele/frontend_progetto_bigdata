@@ -20,7 +20,7 @@ class Utility{
   static const List<String> nations = <String>[
     'Russia',
     'Germany',
-    'Kingdom',
+    'United Kingdom',
     'France',
     'Italy',
     'Spain',
@@ -56,7 +56,7 @@ class Utility{
     'Montenegro',
     'Luxembourg',
     'Malta',
-    'Iceland'
+    'Iceland',
     'Andorra',
     'Monaco',
     'Liechtenstein',
