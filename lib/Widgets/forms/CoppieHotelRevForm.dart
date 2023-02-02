@@ -26,7 +26,7 @@ class _CoppieHotelRevState extends State<CoppieHotelRevForm> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 20),
+      padding: EdgeInsets.only(left: 40, top: 20),
       child: ElevatedButton(
         onPressed: submit,
         child: Text("submit"),

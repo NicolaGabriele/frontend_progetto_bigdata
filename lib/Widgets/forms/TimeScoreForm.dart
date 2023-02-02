@@ -29,6 +29,8 @@ class TimeScoreForm extends StatefulWidget {
 class _TimeScoreState extends State<TimeScoreForm> {
 
   String? _hotel = "Nome hotel:";
+  static const List<String> list = Utility.hotels;
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +43,26 @@ class _TimeScoreState extends State<TimeScoreForm> {
               width: 200,
               height: 50,
               color: Colors.red.shade50,
-              child: TextField(
-                decoration: InputDecoration(
-                  label: Text(_hotel!),
-                  border: OutlineInputBorder(),
-                ),
-                onSubmitted: (value) => _hotel = value,
-                onChanged: (value) => _hotel = value,
+              child: Autocomplete<String>(
+                fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
+                  return TextField(
+                    controller: textEditingController,
+                    focusNode: focusNode,
+                    onEditingComplete: onFieldSubmitted,
+                    onSubmitted: (value) => _hotel = value,
+                    onChanged: (value) => _hotel = value,
+                    decoration: const InputDecoration(
+                      label: Text("Nome hotel: "),
+                      border: OutlineInputBorder(),
+                    ),
+                  );
+                },
+                optionsBuilder: (TextEditingValue textEditingValue) {
+                  return list.where((String option) {
+                    return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                  });
+                },
+                onSelected: (value) => _hotel = value,
               ),
             ),
           ),

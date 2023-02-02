@@ -23,7 +23,7 @@ class _AverageScoreState extends State<AverageScoreForm>{
     return Column(
       children: [
         Padding(
-            padding: EdgeInsets.only(bottom: 10, top: 10),
+            padding: EdgeInsets.only(bottom: 10, top: 10, left:50),
           child: Container(
             color: Colors.red.shade50,
             child: Row(
@@ -32,7 +32,7 @@ class _AverageScoreState extends State<AverageScoreForm>{
                 const Padding(
                   padding: EdgeInsets.only(right: 10),
                   child:  Text(
-                    "punteggio minimo",
+                    "Punteggio minimo:",
                     style: TextStyle(
                         fontSize: 20
                     ),
@@ -47,14 +47,16 @@ class _AverageScoreState extends State<AverageScoreForm>{
             ),
           )
         ),
-
-        ElevatedButton(
-            onPressed: submit, 
-            child: Text("submit"),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateColor.resolveWith((states) => Colors.red)
-            ),
-        )
+        Padding(
+            padding: EdgeInsets.only(left: 50,top: 10),
+            child:ElevatedButton(
+                    onPressed: submit,
+                    child: Text("submit"),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateColor.resolveWith((states) => Colors.red)
+                ),
+              )
+          )
       ],
     );
   }
