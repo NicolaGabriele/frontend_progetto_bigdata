@@ -32,6 +32,12 @@ class TimeScoreItem {
   factory TimeScoreItem.fromJson(Map<String,dynamic> json)=>
       TimeScoreItem(json['data'], json['punteggio']);
 
-
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TimeScoreItem &&
+          runtimeType == other.runtimeType &&
+          _punteggio == other._punteggio &&
+          _data == other._data;
 
 }

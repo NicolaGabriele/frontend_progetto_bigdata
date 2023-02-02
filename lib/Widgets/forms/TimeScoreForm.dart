@@ -1,4 +1,6 @@
 
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:frontend_progetto_bigdata/REST/Utility.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
@@ -30,6 +32,10 @@ class _TimeScoreState extends State<TimeScoreForm> {
 
   String? _hotel = "Nome hotel:";
   static const List<String> list = Utility.hotels;
+
+  static final List<String> optionList = ["Giornaliero","Mensile"];
+
+  String? _option = "Mensile";
 
 
   @override
@@ -67,6 +73,20 @@ class _TimeScoreState extends State<TimeScoreForm> {
             ),
           ),
           Padding(
+              padding: const EdgeInsets.only(left: 50, top: 10),
+              child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.red.shade50,
+                  ),
+                  child: DropdownButton(
+                      value: _option,
+                      items: optionList.map((e) => DropdownMenuItem(value: e, child: Text(e,textAlign: TextAlign.center))).toList(),
+                      onChanged: (String? value)=> setState(()=> _option = value)
+                  )
+              )
+          ),
+          Padding(
             padding: EdgeInsets.only(left: 50, top: 10),
             child: ElevatedButton(
                 onPressed: submitTimeScoreEvolution, //()=>{/*TODO*/},
@@ -89,10 +109,22 @@ class _TimeScoreState extends State<TimeScoreForm> {
           ),
         )
     );
-    Query.timeScoreEvolution( _hotel! ).then(
-            (value) => widget.visualizzation.setWidget( TimeScoreVisualization(input: value,)
-        )
-    );
+    if (_option == null || _option == "") _option = "Mensile";
+
+    if(_option=="Mensile"){
+      Query.timeScoreEvolutionMonth( _hotel! ).then(
+              (value) => widget.visualizzation.setWidget( TimeScoreVisualization(input: value,)
+          )
+      );
+    }
+    else {
+      Query.timeScoreEvolution(_hotel!).then(
+              (value) =>
+              widget.visualizzation.setWidget(
+                  TimeScoreVisualization(input: value,)
+              )
+        );
+    }
 
   }
 

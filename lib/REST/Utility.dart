@@ -12,7 +12,7 @@ class Utility{
                       reviewsNumberFilter = "/reviewsNumberFilter",
                       naiveBayesian = "/naiveBayesian",
                       timeScoreEvolution = "/timeScoreEvolution",
-
+                      timeScoreEvolutionMonth = "/timeScoreEvolutionMonth",
                       allFilters = "/allFilters";
 
 

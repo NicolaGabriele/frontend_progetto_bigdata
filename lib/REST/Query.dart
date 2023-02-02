@@ -145,6 +145,17 @@ class Query{
     return results;
   }
 
+  static Future<List<TimeScoreItem>> timeScoreEvolutionMonth(String hotel)async{
+    List<TimeScoreItem> results = [];
+    var response = await RestManager.submitSparkJob(Utility.timeScoreEvolutionMonth, {'hotel':hotel});
+    List<dynamic> l = jsonDecode(response);
+    l.forEach((element) {
+      Map<String,dynamic> map = element;
+      results.add(TimeScoreItem.fromJson(map));
+    });
+    return results;
+  }
+
   static Future<List<GeoData>> allFilters(String nation, String score, String num)async{
     List<GeoData> results = [];
     var response = await RestManager.submitSparkJob(Utility.allFilters, {'nation':nation, 'score':score, 'num':num});

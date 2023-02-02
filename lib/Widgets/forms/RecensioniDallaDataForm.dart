@@ -79,7 +79,6 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
                         items: _timingMap.keys.map((e) => DropdownMenuItem(value: e, child: Text(e,textAlign: TextAlign.center))).toList(),
                         onChanged: (String? value)=> setState(()=>_time = value)
                     )
-
               )
           ),
           Padding(
