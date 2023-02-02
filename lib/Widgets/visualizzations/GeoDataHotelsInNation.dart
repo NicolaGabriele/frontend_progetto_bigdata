@@ -30,7 +30,10 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
   //List<LatLng> _latLngList = [];
   var _markers = <Marker>[];
 
-  var textInPopup = "";
+  GeoData geoDataCorretto = GeoData("", "", "", "","");
+
+  var lat;
+  var lng;
 
   @override
   void initState() {
@@ -116,7 +119,9 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
               ),
               markers: _markers,
               onMarkerTap: (marker) => {
-                textInPopup = marker.point.latitude.toString()+" "+marker.point.longitude.toString()
+                lat = marker.point.latitude.toString(),
+                lng = marker.point.longitude.toString()
+                //geoDataCorretto = coord.firstWhere((element) => element==GeoData("","","",marker.point.latitude.toString(), marker.point.latitude.toString()))
               },
               polygonOptions: PolygonOptions(
                   borderColor: Colors.white,
@@ -158,7 +163,7 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
                                 SizedBox(
                                   width: 100,
                                   child: Text(
-                                    'Hotel Name',
+                                    coord.firstWhere((element) => element==GeoData("","","",lat, lng)).getNome(),
                                     maxLines: 1,
                                     overflow: TextOverflow.fade,
                                     softWrap: false,
@@ -166,7 +171,7 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
                                 ),
                                 const Spacer(),
                                 Text(
-                                  'Score se riusciamo',
+                                    coord.firstWhere((element) => element==GeoData("","","",lat, lng)).getScore()
                                   // widget.data!.date!,
                                 )
                               ],
@@ -175,7 +180,7 @@ class _GeoDataHotelsState extends State<GeoDataHotelsInNation>{
                           Padding(
                             padding: const EdgeInsets.only(top: 10 , left: 10 , right: 10),
                             child: Text(
-                              'Dettagli hotel (indirizzo, numrecensioni, ecc...)',
+                              coord.firstWhere((element) => element==GeoData("","","",lat, lng)).getIndirizzo(),
                               maxLines: 3,
                             ),
                           ),
