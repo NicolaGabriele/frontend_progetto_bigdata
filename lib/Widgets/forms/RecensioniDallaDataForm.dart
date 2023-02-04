@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_progetto_bigdata/REST/Utility.dart';
 import 'package:frontend_progetto_bigdata/Widgets/pages/VisualizzationPage.dart';
+import 'package:frontend_progetto_bigdata/Widgets/visualizzations/RecensioniDallaDataVisualization.dart';
 
 import '../../REST/Query.dart';
 
@@ -83,7 +84,7 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
           ),
           Padding(
             padding: EdgeInsets.only(left: 50,top: 10),
-            child: Text("*Data di riferimento: 8/3/2017"),
+            child: Text("*Data di riferimento: 8/3/2017",style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: EdgeInsets.only(left: 50,top: 10),
@@ -109,35 +110,12 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
         )
     );
 
-    List<String> s = await Query.recensioniHotelDallaData(
-        _hotel!, _timingMap[_time]!);
-    if (s.length == 0) {
-        widget.visualizzation.setWidget(new AlertDialog(
-        title: Text("Non abbiamo dati a disposizione riguardo a hotel con questo nome e in questa data", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.red,
-      ) );
-    }
-    else {
-      List<Widget> l = [];
-      s.forEach((element) {
-        l.add(
-            Padding(padding: EdgeInsets.only(top: 20), child: Text(element)));
-      });
+    Query.recensioniHotelDallaData(_hotel!, _timingMap[_time]!).then((value) =>
+    {
       widget.visualizzation.setWidget(
-          Container(
-            width: 1000,
-            height: 300,
-            child: Scrollbar(
-                scrollbarOrientation: ScrollbarOrientation.right,
-                interactive: true,
-                thumbVisibility: true,
-                child: ListView(
-                  children: l,
-                )
-            ),
-          )
-      );
-    }
+          RecensioniDallaDataVisualization(recensioni: value)
+      )
+    });
   }
 
 }
