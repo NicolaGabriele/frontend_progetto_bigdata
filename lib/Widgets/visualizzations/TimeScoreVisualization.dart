@@ -44,7 +44,6 @@ class _TimeScoreVisualState extends State<TimeScoreVisualization> {
     );
   }
 
-  //todo vedi se si può dimensionare meglio nel caso di troppe recensioni
   Widget buildTimeSeriesChart() {
     if (widget.input.length == 0) {
       return const AlertDialog(

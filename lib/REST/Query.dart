@@ -4,6 +4,7 @@ import 'package:frontend_progetto_bigdata/Models/FilteredItem.dart';
 import 'package:frontend_progetto_bigdata/Models/ReviewsNumberItem.dart';
 import 'package:frontend_progetto_bigdata/Models/WordCountItem.dart';
 import 'package:frontend_progetto_bigdata/REST/RestManager.dart';
+import 'package:frontend_progetto_bigdata/models/CoppiaNazionalitaPunteggioMedio.dart';
 
 import '../Models/CoppiaHotelNumRecensioni.dart';
 import '../Models/CoppiaHotelPunteggioMedio.dart';
@@ -163,6 +164,18 @@ class Query{
     l.forEach((element) {
       Map<String,dynamic> map = element;
       results.add(GeoData.fromJson(map));
+    });
+    return results;
+  }
+
+
+  static Future<List<CoppiaNazionalitaPunteggioMedio>> demandingClients()async{
+    List<CoppiaNazionalitaPunteggioMedio> results = [];
+    var response = await RestManager.submitSparkJob(Utility.demandingClients,Map());
+    List<dynamic> l = jsonDecode(response);
+    l.forEach((element) {
+      Map<String,dynamic> map = element;
+      results.add(CoppiaNazionalitaPunteggioMedio.fromJson(map));
     });
     return results;
   }

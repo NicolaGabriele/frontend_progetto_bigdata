@@ -13,7 +13,8 @@ class Utility{
                       naiveBayesian = "/naiveBayesian",
                       timeScoreEvolution = "/timeScoreEvolution",
                       timeScoreEvolutionMonth = "/timeScoreEvolutionMonth",
-                      allFilters = "/allFilters";
+                      allFilters = "/allFilters",
+                      demandingClients = "/demandingClientsPerNationality";
 
 
 
