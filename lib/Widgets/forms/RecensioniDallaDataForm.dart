@@ -112,9 +112,19 @@ class _RecensDallaDataState extends State<RecensioniDallaDataForm>{
 
     Query.recensioniHotelDallaData(_hotel!, _timingMap[_time]!).then((value) =>
     {
-      widget.visualizzation.setWidget(
-          RecensioniDallaDataVisualization(recensioni: value)
-      )
+      if (value.length==0){
+        widget.visualizzation.setWidget(new AlertDialog(
+          title: Text("Non abbiamo dati a disposizione riguardo questo hotel nella data specificata", style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.red,
+        )
+        ),
+      }
+      else
+        {
+          widget.visualizzation.setWidget(
+              RecensioniDallaDataVisualization(recensioni: value)
+          )
+        }
     });
   }
 
