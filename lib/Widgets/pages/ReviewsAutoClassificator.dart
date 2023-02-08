@@ -52,7 +52,7 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
                padding:EdgeInsets.all(10),
              child: TextField(
                decoration: InputDecoration(
-                 label: Text("inserisci la tua recensione"),
+                 label: Text("Inserisci la tua recensione"),
                ),
                onChanged: (value)=>_recensione = value,
                maxLines: null,
@@ -101,7 +101,7 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
                     color: Colors.red,
                     child: Text(
                       textAlign: TextAlign.center,
-                      "LA TUA RECENSIONE E' NEGATIVA CON UNA PROBABILITA' DEL ${negProb}%",
+                      "${negProb}%",
                       style: TextStyle(fontStyle: FontStyle.italic, fontSize: 30),
                     ),
                 )
@@ -117,7 +117,7 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
                     color: Colors.green,
                     child: Text(
                       textAlign: TextAlign.center,
-                      "LA TUA RECENSIONE E' POSITIVA CON UNA PROBABILITA' DEL ${posProb}%",
+                      "${posProb}%",
                       style: TextStyle(fontStyle: FontStyle.italic, fontSize: 30),
                     ),
                 )
