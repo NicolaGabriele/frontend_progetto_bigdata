@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_scatter/flutter_scatter.dart';
 
+import 'dart:math';
+
 import '../../Models/WordCountItem.dart';
 
 class WordCloud extends StatelessWidget{
@@ -13,28 +15,39 @@ class WordCloud extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
+    debugPrint(lista.length.toString());
     List<FlutterHashtag> aux = [];
-    bool rotate = true;
+    double factor = 10/lista.first.getCounter();
+    var rng = Random();
     for(WordCountItem e in lista){
-      double factor = 100/350000;
       int size = (e.getCounter()*factor).toInt();
-      rotate = (rotate)?false:true;
+      bool rotate = rng.nextBool();
+      Color color;
+      switch(rng.nextInt(5)) {
+        case 0: { color = FlutterColors.red; } break;
+        case 1: { color = FlutterColors.blue; } break;
+        case 2: { color = FlutterColors.green; } break;
+        case 3: { color = FlutterColors.yellow; } break;
+        default: { color = FlutterColors.purple; } break;
+      }
       aux.add(
-        FlutterHashtag(e.getWord(), Colors.red, size, rotate)
+        FlutterHashtag(e.getWord(), color, size, rotate)
       );
     }
     List<Widget> wids = [];
     for(int i = 0; i<aux.length; i++){
-      wids.add(ScatterItem(aux[i], i));
+      wids.add(ScatterItem(aux[aux.length-i-1], i));
+      debugPrint(wids.length.toString());
+      //wids.shuffle();
     }
     final screenSize = MediaQuery.of(context).size;
     final ratio = screenSize.width / screenSize.height;
     return Center(
       child: Container(
-        color: Colors.red.shade50,
+        //color: Colors.red.shade50,
         child: Scatter(
           fillGaps: true,
-          delegate: ArchimedeanSpiralScatterDelegate(ratio: ratio),
+          delegate: FermatSpiralScatterDelegate(ratio: ratio),
           children: wids,
         ),
       ),
@@ -82,15 +95,10 @@ class FlutterColors {
   const FlutterColors._();
 
   static const Color yellow = Color(0xFFFFC108);
-
-  static const Color white = Color(0xFFFFFFFF);
-
-  static const Color blue400 = Color(0xFF13B9FD);
-  static const Color blue600 = Color(0xFF0175C2);
+  static const Color red = Colors.red;
   static const Color blue = Color(0xFF02569B);
+  static const Color green = Colors.green;
+  static const Color purple = Colors.deepPurple;
 
-  static const Color gray100 = Color(0xFFD5D7DA);
-  static const Color gray600 = Color(0xFF60646B);
-  static const Color gray = Color(0xFF202124);
 }
 
