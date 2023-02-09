@@ -87,8 +87,8 @@ class _ReviewsClassificatorState extends State<ReviewsAutoClassificator>{
   }
 
   Widget buildResultWidget(NaiveBayesianResult result){
-    int posProb = (result.getProb().first*100).toInt();
-    int negProb = ((result.getProb()[1])*100).toInt();
+    int posProb = (result.getProb().first*100).floor();
+    int negProb = ((result.getProb()[1])*100).ceil();
     return Row(
       children: [
         Expanded(
